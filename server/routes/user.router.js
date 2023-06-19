@@ -34,6 +34,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //     });
 // });
 
+//Modified for my own uses. Template commented out above. 
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);

@@ -21,6 +21,7 @@ router.post('/create', (req, res) => {
     });
 });
 
+//GET Request to Map the group to your launch and details page
 router.get('/fetch', (req, res) => {
     const query = `SELECT * FROM groups ORDER BY "start_date" DESC`;
     pool.query(query)
@@ -33,19 +34,5 @@ router.get('/fetch', (req, res) => {
       res.sendStatus(500);
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
