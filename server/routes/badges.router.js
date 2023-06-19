@@ -16,6 +16,7 @@ router.get('/fetch', (req, res) => {
     });
 });
 
+//POST Request to add a badge to database
 router.post('/create', (req, res) => {
     const { img, name } = req.body;
     const query = `INSERT INTO badges (img, name)
@@ -34,7 +35,41 @@ router.post('/create', (req, res) => {
     });
 });
 
+//PUT Request to edit badges in database
+router.put('/update/:id', (req, res) => {
+    const { id } = req.params;
+    const { img, name } = req.body;
+    const query = `UPDATE badges SET img = $1, name = $2 WHERE id = $3 RETURNING *`;
+    
+    pool.query(query, [img, name, id])
+      .then((result) => {
+        if (result.rows.length === 0) {
+          res.sendStatus(404); // No badge found with the given ID
+        } else {
+          res.status(200).send(result.rows[0]);
+        }
+      })
+      .catch((error) => {
+        console.error('Error updating a badge:', error);
+        res.sendStatus(500);
+      });
+  });
 
+  // DELETE Request to delete a badge by ID
+router.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `DELETE FROM badges WHERE id = $1`;
+    
+    pool.query(query, [id])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.error('Error deleting a badge:', error);
+        res.sendStatus(500);
+      });
+  });
+  
 
 
 module.exports = router;
