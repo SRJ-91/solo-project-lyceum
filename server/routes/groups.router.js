@@ -21,6 +21,21 @@ router.post('/create', (req, res) => {
     });
 });
 
+router.get('/fetch', (req, res) => {
+    const query = `SELECT * FROM groups ORDER BY "start_date" DESC`;
+    pool.query(query)
+    .then((result) => {
+      res.status(200).send(result.rows[0]);
+      console.log('fetching', result.rows);
+    })
+    .catch((error) => {
+      console.error('Error fetching a group:', error);
+      res.sendStatus(500);
+    });
+});
+
+
+
 
 
 
