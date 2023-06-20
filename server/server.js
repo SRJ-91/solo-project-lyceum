@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const groupsRouter = require('./routes/groups.router');
 const badgesRouter = require('./routes/badges.router');
 const whiteboardRouter = require('./routes/whiteboard.router');
+const postsRouter = require('./routes/posts.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/groups', groupsRouter);
 app.use('/api/badges', badgesRouter);
 app.use('/api/whiteboard', whiteboardRouter);
+app.use('/api/posts', postsRouter);
 
 // Serve static files
 app.use(express.static('build'));
