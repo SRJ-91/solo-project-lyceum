@@ -36,13 +36,12 @@ router.post('/create', (req, res) => {
 });
 
 // PUT Request to update a post by ID
-router.put('/:id', (req, res) => {
+router.put('/update/:id', (req, res) => {
   const { id } = req.params;
-  const { title, body, user_id, badge_id, status } = req.body;
-  const query = 'UPDATE posts SET title = $1, body = $2, user_id = $3, badge_id = $4, status = $5 WHERE id = $6 RETURNING *';
-  const values = [title, body, user_id, badge_id, status, id];
+  const { title, body, status } = req.body;
+  const query = 'UPDATE posts SET title = $1, body = $2, status = $3 WHERE id = $4 RETURNING *';
   
-  pool.query(query, values)
+  pool.query(query, [title, body, status, id])
     .then((result) => {
       if (result.rows.length === 0) {
         res.sendStatus(404); // No post found with the given ID
@@ -57,12 +56,11 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE Request to delete a post by ID
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const { id } = req.params;
   const query = 'DELETE FROM posts WHERE id = $1';
-  const values = [id];
   
-  pool.query(query, values)
+  pool.query(query, [id])
     .then(() => {
       res.sendStatus(200);
     })
