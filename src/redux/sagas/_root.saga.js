@@ -6,6 +6,7 @@ import watchGroups from './groups.saga';
 import watchBadges from './badges.saga';
 import watchWhiteboard from './whiteboard.saga';
 import watchPosts from './posts.saga';
+import watchUserGroups from './users_groups.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     watchGroups(),
     watchBadges(),
     watchWhiteboard(),
-    watchPosts()
+    watchPosts(),
+    watchUserGroups()
   ]);
 }
