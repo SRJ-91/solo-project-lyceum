@@ -1,11 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* fetchWhiteboardSaga(action) {
+function* fetchWhiteboardSaga() {
   try {
-    const groupId = action.payload;
-    const response = yield call(axios.get, `/whiteboard/fetch/${groupId}`);
-    yield put({ type: 'SET_WHITEBOARD', whiteboard: response.data });
+    const whiteboard = yield call(axios.get, `/whiteboard/fetch`);
+    yield put({ type: 'SET_WHITEBOARD', payload: whiteboard.data });
   } catch (error) {
     console.error('Error fetching whiteboard notes:', error);
   }
