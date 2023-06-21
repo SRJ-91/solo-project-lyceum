@@ -40,7 +40,7 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const region = req.body.region;
   const avatar = req.body.avatar;
-  const role = req.body.role;
+  const role = req.body.role; //is this necessary? Automated?
   const created_at = req.body.created_at;
 
 console.log(req.body);
