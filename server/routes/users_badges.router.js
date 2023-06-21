@@ -35,10 +35,9 @@ router.post('/award', (req, res) => {
 // PUT Request to update a badge
 router.put('/update/:id', (req, res) => {
   const { id } = req.params;
-  const { tier, date } = req.body;
-  const query = 'UPDATE users_badges SET tier = $1, date = $2 WHERE id = $3 RETURNING *';
+  const query = 'UPDATE users_badges SET tier = $1 WHERE id = $2 RETURNING *';
   
-  pool.query(query, [tier, date, id])
+  pool.query(query, [tier, id])
     .then((result) => {
       if (result.rows.length === 0) {
         res.sendStatus(404); // No user badge found with the given ID
