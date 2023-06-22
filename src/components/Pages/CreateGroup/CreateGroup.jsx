@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const CreateGroup = () => {
 
     const history = useHistory();
-    const store = useSelector(store => store.groups);
     const dispatch = useDispatch();
 
 
@@ -21,16 +19,115 @@ const CreateGroup = () => {
         const [region, setRegion] = useState('');
         const [details, setDetails] = useState('');
 
-    function handleGroupLaunch() {
+
+        function handleGroupLaunch() {
+          // Create a new group object with the input values
+          const newGroup = {
+            book_name,
+            cover,
+            team_name,
+            logo,
+            start_date,
+            end_date,
+            cohort,
+            region,
+            details,
+          };
         
-    }
+          // Dispatch the CREATE_GROUP action with the new group object
+          dispatch({ type: 'CREATE_GROUP', payload: newGroup });
+        
+          // Navigate to the "/launch" screen
+          history.push('/launch');
+        }
     
 
 
 
   return (
     <div>
-      
+      <h1>Create Group</h1>
+      <form 
+      onSubmit={handleGroupLaunch}>
+        <label htmlFor="book_name">Book Name:</label>
+        <input
+          type="text"
+          id="book_name"
+          value={book_name}
+          onChange={(e) => setBook_Name(e.target.value)}
+        />
+
+        <label htmlFor="cover">Cover:</label>
+        <input
+          type="text"
+          id="cover"
+          value={cover}
+          onChange={(e) => setCover(e.target.value)}
+        />
+
+        <label htmlFor="team_name">Team Name:</label>
+        <input
+          type="text"
+          id="team_name"
+          value={team_name}
+          onChange={(e) => setTeam_Name(e.target.value)}
+        />
+
+        <label htmlFor="logo">Logo:</label>
+        <input
+          type="text"
+          id="logo"
+          value={logo}
+          onChange={(e) => setLogo(e.target.value)}
+        />
+
+        <label htmlFor="start_date">Start Date:</label>
+        <input
+          type="date"
+          id="start_date"
+          value={start_date}
+          onChange={(e) => setStart_Date(e.target.value)}
+        />
+
+        <label htmlFor="end_date">End Date:</label>
+        <input
+          type="date"
+          id="end_date"
+          value={end_date}
+          onChange={(e) => setEnd_Date(e.target.value)}
+        />
+
+        <label htmlFor="cohort">Cohort:</label>
+        <select
+          id="cohort"
+          value={cohort}
+          onChange={(e) => setCohort(e.target.value)}
+        >
+          {/* Options for cohort */}
+          <option value="">Select Cohort</option>
+          <option value="1">Cohort 1</option>
+          <option value="2">Cohort 2</option>
+          <option value="3">Cohort 3</option>
+          {/* Add more options as needed */}
+        </select>
+
+        <label htmlFor="region">Region:</label>
+        <input
+          type="text"
+          id="region"
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+        />
+
+        <label htmlFor="details">Details:</label>
+        <textarea
+          id="details"
+          value={details}
+          onChange={(e) => setDetails(e.target.value)}
+        ></textarea>
+
+        <button type="submit">Launch Group</button>
+      </form>
     </div>
   )
 }

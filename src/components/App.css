@@ -110,3 +110,13 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input, select {
+  width: 25%;
+}
