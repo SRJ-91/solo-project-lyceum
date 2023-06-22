@@ -8,7 +8,7 @@ router.get('/fetch', (req, res) => {
     console.log(req.body);
     pool.query(query)
     .then((result) => {
-      res.status(200).send(result.rows[0]);
+      res.status(200).send(result.rows);
       console.log('fetching', result.rows);
     })
     .catch((error) => {

@@ -22,6 +22,7 @@ import RegisterPage from './Pages/RegisterPage/RegisterPage';
 
 import './App.css';
 import CreateBadge from './Pages/CreateBadge/CreateBadge';
+import AllBadges from './Pages/AllBadges/AllBadges';
 
 function App() {
   const dispatch = useDispatch();
@@ -111,10 +112,12 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact path="/badge-create"
-          >
+          <Route exact path="/create-badge">
             <CreateBadge />
+          </Route>
+
+          <Route exact path="/all-badges">
+            <AllBadges />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

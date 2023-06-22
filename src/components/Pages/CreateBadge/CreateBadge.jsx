@@ -15,7 +15,7 @@ const CreateBadge = () => {
     const addNewBadge = event => {
         event.preventDefault();
         dispatch({ type: 'CREATE_BADGE', payload: newBadge });
-        history.push({/*The badges screen*/})    
+        history.push("all-badges");    
     }
 
   return (
