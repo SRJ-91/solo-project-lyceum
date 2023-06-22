@@ -38,10 +38,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const region = req.body.region;
-  const avatar = req.body.avatar;
-  const role = req.body.role; //is this necessary? Automated?
-  const created_at = req.body.created_at;
+  // const region = req.body.region;
+  // const avatar = req.body.avatar;
+  // const role = req.body.role; //is this necessary? Automated?
+  // const created_at = req.body.created_at;
 
 console.log(req.body);
 

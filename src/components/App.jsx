@@ -21,6 +21,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 
 import './App.css';
+import CreateBadge from './Pages/CreateBadge/CreateBadge';
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +109,12 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+          <Route
+            exact path="/badge-create"
+          >
+            <CreateBadge />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

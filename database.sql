@@ -4,9 +4,16 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
+CREATE TABLE badges (
+  id serial PRIMARY KEY,
+  img varchar,
+  name varchar
+);
+
 CREATE TABLE groups (
   id serial PRIMARY KEY,
-  status boolean,
+  status boolean DEFAULT FALSE,
+  badge_id integer REFERENCES badges(id),
   region varchar,
   book_name varchar,
   team_name varchar,
@@ -24,23 +31,14 @@ CREATE TABLE "user" (
   username varchar,
   password varchar,
   avatar varchar,
-  role varchar,
-  created_at timestamp
+  role integer,
+  created_at timestamp default NOW()
 );
-
-
 
 CREATE TABLE whiteboard (
   id serial PRIMARY KEY,
   groups_id integer REFERENCES groups(id),
   notes varchar
-);
-
-CREATE TABLE badges (
-  id serial PRIMARY KEY,
-  group_id integer REFERENCES groups(id),
-  img varchar,
-  name varchar
 );
 
 CREATE TABLE posts (
@@ -49,8 +47,8 @@ CREATE TABLE posts (
   body text,
   user_id integer REFERENCES "user"(id),
   badge_id integer REFERENCES badges(id),
-  status varchar,
-  created_at timestamp
+  status integer,
+  created_at timestamp default NOW()
 );
 
 CREATE TABLE user_groups (
@@ -60,10 +58,10 @@ CREATE TABLE user_groups (
   role integer
 );
 
-CREATE TABLE user_badges (
+CREATE TABLE users_badges (
   id serial PRIMARY KEY,
   user_id integer REFERENCES "user"(id),
   badge_id integer REFERENCES badges(id),
   tier integer,
-  date date
+  date timestamp
 );

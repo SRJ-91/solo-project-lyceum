@@ -4,8 +4,8 @@ import axios from 'axios';
 // Fetch badges saga
 function* fetchBadgesSaga() {
   try {
-    const badges = yield call(axios.get, '/badges/fetch');
-    yield put({ type: 'SET_BADGES', badges: badges.data });
+    const badges = yield call(axios.get, '/api/badges/fetch');
+    yield put({ type: 'SET_BADGES', payload: badges.data });
   } catch (error) {
     console.log('Error GETting badges:', error);
   }
@@ -14,7 +14,7 @@ function* fetchBadgesSaga() {
 // Create badge saga
 function* createBadgeSaga(action) {
   try {
-    yield call(axios.post, '/badges/create', action.payload);
+    yield call(axios.post, '/api/badges/create', action.payload);
     console.log('Successfully created badge', action.payload);
     yield put({ type: 'FETCH_BADGES' });
   } catch (error) {
@@ -25,7 +25,7 @@ function* createBadgeSaga(action) {
 // Update badge saga
 function* updateBadgeSaga(action) {
   try {
-    yield call(axios.put, `/badges/update/${action.payload.id}`, action.payload);
+    yield call(axios.put, `/api/badges/update/${action.payload.id}`, action.payload);
     console.log('Successfully updated badge', action.payload);
     yield put({ type: 'FETCH_BADGES' });
   } catch (error) {
@@ -36,7 +36,7 @@ function* updateBadgeSaga(action) {
 // Delete badge saga
 function* deleteBadgeSaga(action) {
   try {
-    yield call(axios.delete, `/badges/delete/${action.payload.id}`);
+    yield call(axios.delete, `/api/badges/delete/${action.payload.id}`);
     console.log('Successfully deleted badge', action.payload);
     yield put({ type: 'FETCH_BADGES' });
   } catch (error) {
