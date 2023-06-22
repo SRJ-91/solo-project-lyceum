@@ -4,11 +4,11 @@ const pool = require('../modules/pool');
 
 //POST Request to create a new reading group
 router.post('/create', (req, res) => {
-    const { status, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details } = req.body;
-    const query = `INSERT INTO groups (status, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
+    const { badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details } = req.body;
+    const query = `INSERT INTO groups (badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                    RETURNING *`;
-    const values = [status, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details];
+    const values = [badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details];
     console.log('sending', req.body);
     pool.query(query, values)
     .then((result) => {
