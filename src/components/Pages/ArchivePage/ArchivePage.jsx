@@ -11,7 +11,7 @@ const ArchivePage = () => {
 
     useEffect(() => {
         // Fetch group data IF STATUS IS DONE/TRUE
-        dispatch({ type: 'FETCH_GROUPS' });
+        dispatch({ type: 'FETCH_DONE' });
       }, []);
 
   return (

@@ -22,8 +22,11 @@ router.post('/create', (req, res) => {
 });
 
 //GET Request to Map the group to your launch and details page
-router.get('/fetch', (req, res) => {
-    const query = `SELECT * FROM groups ORDER BY "start_date" DESC`;
+router.get('/active', (req, res) => {
+    const query = `
+    SELECT * FROM groups
+    WHERE "status" = false 
+    ORDER BY "start_date" DESC`;
     pool.query(query)
     .then((result) => {
       res.status(200).send(result.rows);
@@ -31,6 +34,23 @@ router.get('/fetch', (req, res) => {
     })
     .catch((error) => {
       console.error('Error fetching a group:', error);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/done', (req, res) => {
+  const query = `
+    SELECT * FROM "groups"
+    WHERE "status" = true
+    ORDER BY "end_date" DESC
+  `;
+  pool
+    .query(query)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error fetching archived groups:', error);
       res.sendStatus(500);
     });
 });

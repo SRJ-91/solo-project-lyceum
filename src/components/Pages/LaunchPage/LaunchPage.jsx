@@ -12,7 +12,7 @@ const LaunchPage = () => {
 
     useEffect(() => {
         // Fetch group data
-        dispatch({ type: 'FETCH_GROUPS' });
+        dispatch({ type: 'FETCH_ACTIVE' });
       }, []);
 
       return (
