@@ -16,7 +16,7 @@ const LaunchPage = () => {
 
       return (
         <div>
-          <h1>Launch Page</h1>
+          <h1>Welcome to the Lyceum</h1>
             <img src={"/images/Lyceum-Image.webp"}
              alt="Lyceum" 
              width="500px" 
@@ -24,7 +24,7 @@ const LaunchPage = () => {
             <button onClick={() => history.push('/create-group')}>Create Group</button>
             {/* <button onClick={() => history.push('/registration')}>Create Profile</button>  UNSURE???*/}
             <button onClick={() => history.push('/all-badges')}>Badges</button>
-            <button>Go to Archive</button>
+            <button onClick={() => history.push('/archive')}>Go to Archive</button>
 
           <table>
             <thead>
