@@ -26,7 +26,7 @@ router.get('/fetch', (req, res) => {
     const query = `SELECT * FROM groups ORDER BY "start_date" DESC`;
     pool.query(query)
     .then((result) => {
-      res.status(200).send(result.rows[0]);
+      res.status(200).send(result.rows);
       console.log('fetching', result.rows);
     })
     .catch((error) => {

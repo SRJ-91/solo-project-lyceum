@@ -3,9 +3,9 @@ import axios from 'axios';
 
 function* fetchGroupsSaga() {
   try {
-    const groups = yield call(axios.get, '/groups/fetch');
-    console.log('fetching all groups to see!', groups);
-    yield put({ type: 'SET_GROUPS', groups: groups.data });
+    const groups = yield call(axios.get, '/api/groups/fetch');
+    console.log('fetching all groups to see!', groups.data);
+    yield put({ type: 'SET_GROUPS', payload: groups.data });
   } catch (error) {
     console.log('GETting groups has failed', error);
   }
@@ -13,7 +13,7 @@ function* fetchGroupsSaga() {
 
 function* createGroupSaga(action) {
   try {
-    yield call(axios.post, '/groups/create', action.payload);
+    yield call(axios.post, '/api/groups/create', action.payload);
     console.log('Successfully created group', action.payload);
     yield put({ type: 'FETCH_GROUPS' });
   } catch (error) {
@@ -23,7 +23,7 @@ function* createGroupSaga(action) {
 
 function* updateGroupSaga(action) { //expects a user id plus the groups table keys
     try {
-      yield call(axios.put, `/groups/update/${action.payload.id}`, action.payload);
+      yield call(axios.put, `/api/groups/update/${action.payload.id}`, action.payload);
       console.log('Successfully updated group', action.payload);
       yield put({ type: 'FETCH_GROUPS' });
     } catch (error) {

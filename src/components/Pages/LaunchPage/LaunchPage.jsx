@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
+
 const LaunchPage = () => {
 
     const history = useHistory();
@@ -16,13 +17,13 @@ const LaunchPage = () => {
       return (
         <div>
           <h1>Launch Page</h1>
-            <img src="public/images/Lyceum-Image.webp"
+            <img src={"/images/Lyceum-Image.webp"}
              alt="Lyceum" 
              width="500px" 
              />
-            <button>Create Group</button>
-            <button>Create Profile</button>
-            <button>Badges</button>
+            <button onClick={() => history.push('/create-group')}>Create Group</button>
+            {/* <button onClick={() => history.push('/registration')}>Create Profile</button>  UNSURE???*/}
+            <button onClick={() => history.push('/all-badges')}>Badges</button>
             <button>Go to Archive</button>
 
           <table>

@@ -23,7 +23,7 @@ const AllBadges = () => {
   return (
     <div>
     <h1>Viewing all Badges</h1>
-    <button>Go Back</button>
+    <button onClick={() => history.push('/launch')}>Go Back</button>
     {/* Badges mapping */}
     {badges.map((badge) => (
       <div className='badge' key={badge.id} >

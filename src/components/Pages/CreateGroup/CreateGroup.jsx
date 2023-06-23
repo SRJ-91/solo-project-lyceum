@@ -50,6 +50,7 @@ const CreateGroup = () => {
           console.log('The group sent was', newGroup);
         
           // Navigate to the "/launch" screen
+          dispatch({ type: 'FETCH_GROUPS'})
           history.push('/launch');
         }
     
@@ -59,6 +60,7 @@ const CreateGroup = () => {
   return (
     <div>
       <h1>Create Group</h1>
+      <button onClick={() => history.push('/launch')}>Go Back</button>
       <form 
       onSubmit={handleGroupLaunch}>
 
