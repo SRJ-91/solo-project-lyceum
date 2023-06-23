@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const CreateBadge = () => {
 
     const history = useHistory();
-    const store = useSelector(store => store.groups);
     const dispatch = useDispatch();
 
     //Initial state is an OBJECT, with keys id and name

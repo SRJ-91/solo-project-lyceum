@@ -24,6 +24,7 @@ import './App.css';
 import CreateBadge from './Pages/CreateBadge/CreateBadge';
 import AllBadges from './Pages/AllBadges/AllBadges';
 import CreateGroup from './Pages/CreateGroup/CreateGroup';
+import LaunchPage from './Pages/LaunchPage/LaunchPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -123,6 +124,10 @@ function App() {
 
           <Route exact path="/create-group">
             <CreateGroup />
+          </Route>
+
+          <Route exact path="/launch">
+            <LaunchPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

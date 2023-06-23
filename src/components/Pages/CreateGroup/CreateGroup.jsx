@@ -13,16 +13,26 @@ const CreateGroup = () => {
         const [cover, setCover] = useState('');
         const [team_name, setTeam_Name] = useState('');
         const [logo, setLogo] = useState('');
-        const [start_date, set_Start_Date] = useState('');
-        const [end_date, set_End_Date] = useState('');
+        const [start_date, setStart_Date] = useState('');
+        const [end_date, setEnd_Date] = useState('');
         const [cohort, setCohort] = useState('');
         const [region, setRegion] = useState('');
         const [details, setDetails] = useState('');
+
+        const [selectedBadgeId, setSelectedBadgeId] = useState('');
+
+        useEffect(() => {
+          // Fetch badge data
+          dispatch({ type: 'FETCH_BADGES' });
+        }, []);
+
+        const badges = useSelector(store => store.badges);
 
 
         function handleGroupLaunch() {
           // Create a new group object with the input values
           const newGroup = {
+            badge_id: selectedBadgeId, // Include the selected badge ID
             book_name,
             cover,
             team_name,
@@ -36,6 +46,8 @@ const CreateGroup = () => {
         
           // Dispatch the CREATE_GROUP action with the new group object
           dispatch({ type: 'CREATE_GROUP', payload: newGroup });
+
+          console.log('The group sent was', newGroup);
         
           // Navigate to the "/launch" screen
           history.push('/launch');
@@ -49,6 +61,19 @@ const CreateGroup = () => {
       <h1>Create Group</h1>
       <form 
       onSubmit={handleGroupLaunch}>
+
+        <label htmlFor="badge">Badge:</label>
+          <select
+            id="badge"
+            value={selectedBadgeId}
+            onChange={(e) => setSelectedBadgeId(e.target.value)}>
+            <option value="">Select Badge</option>{badges.map((badge) => (
+            <option key={badge.id} value={badge.id}>
+            {badge.name}
+            </option>
+              ))}
+            </select>
+
         <label htmlFor="book_name">Book Name:</label>
         <input
           type="text"
