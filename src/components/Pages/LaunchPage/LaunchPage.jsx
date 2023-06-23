@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { format } from 'date-fns';
 
 
 const LaunchPage = () => {
@@ -40,15 +41,15 @@ const LaunchPage = () => {
             </thead>
             <tbody>
               {store.map((group) => (
-                <tr key={group.id}>
-                  <td>{group.status ? 'DONE' : 'ACTIVE'}</td>
-                  <td>{group.region}</td>
-                  <td>{group.book_name}</td>
-                  <td>{group.team_name}</td>
-                  <td>{group.cohort}</td>
-                  <td>{group.start_date}</td>
-                  <td>{group.end_date}</td>
-                </tr>
+               <tr key={group.id}>
+               <td>{group.status ? 'DONE' : 'ACTIVE'}</td>
+               <td>{group.region}</td>
+               <td>{group.book_name}</td>
+               <td>{group.team_name}</td>
+               <td>{group.cohort}</td>
+               <td>{format(new Date(group.start_date), 'MM/dd/yyyy')}</td>
+               <td>{format(new Date(group.end_date), 'MM/dd/yyyy')}</td>
+             </tr>
               ))}
             </tbody>
           </table>
