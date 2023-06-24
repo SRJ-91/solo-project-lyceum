@@ -36,7 +36,7 @@ function* updateBadgeSaga(action) {
 // Delete badge saga
 function* deleteBadgeSaga(action) {
   try {
-    yield call(axios.delete, `/api/badges/delete/${action.payload.id}`);
+    yield call(axios.delete, `/api/badges/delete/${action.payload}`);
     console.log('Successfully deleted badge', action.payload);
     yield put({ type: 'FETCH_BADGES' });
   } catch (error) {

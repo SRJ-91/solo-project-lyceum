@@ -40,6 +40,7 @@ const BadgeDetailsPage = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this badge?');
     if (confirmDelete) {
       dispatch({ type: 'DELETE_BADGE', payload: selectedBadge.id });
+      console.log(selectedBadge.id);
       history.push('/all-badges');
     }
   };
