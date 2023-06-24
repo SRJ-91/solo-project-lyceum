@@ -38,11 +38,11 @@ router.get('/:badgeId', (req, res) => {
 
 //POST Request to add a badge to database
 router.post('/create', (req, res) => {
-    const { img, name } = req.body;
+    const { img, name, description } = req.body;
     const query = `INSERT INTO badges (img, name, description)
                    VALUES ($1, $2, $3)
                    RETURNING *`;
-    const values = [img, name];
+    const values = [img, name, description];
     console.log('sending', req.body);
     pool.query(query, values)
     .then((result) => {

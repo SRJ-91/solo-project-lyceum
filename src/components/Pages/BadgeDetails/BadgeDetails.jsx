@@ -27,6 +27,7 @@ const BadgeDetailsPage = () => {
 
   return (
     <div>
+        <button onClick={() => history.push('/all-badges')}>Return to all Badges</button>
       <img src={img} alt="Badge" />
       <h2>{name}</h2>
       <p>{description}</p>

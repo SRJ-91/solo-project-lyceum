@@ -8,7 +8,7 @@ const CreateBadge = () => {
     const dispatch = useDispatch();
 
     //Initial state is an OBJECT, with keys id and name
-    let [newBadge, setBadge] = useState({ name: '', img: ''});
+    let [newBadge, setBadge] = useState({ name: '', img: '', description: ''});
 
     //Function to create the bagde
     const addNewBadge = event => {
@@ -33,6 +33,12 @@ const CreateBadge = () => {
         placeholder='Badge Url'
         value={newBadge.img}
         onChange={(event) => setBadge({...newBadge, img: event.target.value})}
+        />
+        <input 
+        type="text" 
+        placeholder='Badge Description'
+        value={newBadge.description}
+        onChange={(event) => setBadge({...newBadge, description: event.target.value})}
         />
         <input type='submit' value='Add New Badge' />
         </form>
