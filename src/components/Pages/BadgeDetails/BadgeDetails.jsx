@@ -11,7 +11,7 @@ const BadgeDetailsPage = () => {
   const history = useHistory();
     //If nothing found
   if (!selectedBadge) {
-    return <div>Badge not found</div>;
+    return <div>Badge not found! Do not refresh the page here!</div>;
   }
 
    // State for editing badge details
@@ -27,6 +27,7 @@ const BadgeDetailsPage = () => {
   const handleSaveClick = () => {
     const updatedBadge = {
       id: selectedBadge.id,
+      img: editedImg,
       name: editedName,
       description: editedDescription,
     };
