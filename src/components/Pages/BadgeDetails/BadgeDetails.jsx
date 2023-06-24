@@ -1,59 +1,85 @@
 import React, { useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 const BadgeDetailsPage = () => {
+    //Hooks
   const { badgeId } = useParams();
   const badges = useSelector((store) => store.badges);
   const selectedBadge = badges.find((badge) => badge.id === Number(badgeId));
-
+  const dispatch = useDispatch();
   const history = useHistory();
-
+    //If nothing found
   if (!selectedBadge) {
     return <div>Badge not found</div>;
   }
 
    // State for editing badge details
    const [editing, setEditing] = useState(false);
-   const [updatedName, setUpdatedName] = useState(selectedBadge?.name || '');
-   const [updatedImg, setUpdatedImg] = useState(selectedBadge?.img || '');
-   const [updatedDescription, setUpdatedDescription] = useState(selectedBadge?.description || '');
+   const [editedImg, setEditedImg] = useState(selectedBadge?.img || '');
+   const [editedName, setEditedName] = useState(selectedBadge.name);
+   const [editedDescription, setEditedDescription] = useState(selectedBadge.description);
  
-   const handleEdit = () => {
-     setEditing(true);
-   };
+   const handleEditClick = () => {
+    setEditing(true);
+  };
 
-  const handleEditClick = () => {
- // Dispatch an action to update the badge
- dispatch(
-    updateBadge({
+  const handleSaveClick = () => {
+    const updatedBadge = {
       id: selectedBadge.id,
-      name: updatedName,
-      img: updatedImg,
-      description: updatedDescription,
-    })
-  );
-  setEditing(false);
+      name: editedName,
+      description: editedDescription,
+    };
+
+    dispatch({ type: 'UPDATE_BADGE', payload: updatedBadge });
+    setEditing(false);
   };
 
   const handleDeleteClick = () => {
-    // Logic for deleting the badge
-    // Show an alert or confirmation dialog before deleting
+    const confirmDelete = window.confirm('Are you sure you want to delete this badge?');
+    if (confirmDelete) {
+      dispatch({ type: 'DELETE_BADGE', payload: selectedBadge.id });
+      history.push('/all-badges');
+    }
   };
 
   const { name, img, description } = selectedBadge;
 
   return (
     <div>
-        <button onClick={() => history.push('/all-badges')}>Return to all Badges</button>
-      <img src={img} 
-      alt="Badge"
-      width="500px" 
+      {/* Render badge details */}
+    <h2>{selectedBadge.name}</h2>
+    {!editing && (
+      <img
+        src={selectedBadge.img}
+        alt={selectedBadge.name}
+        width="500px"
       />
-      <h2>{name}</h2>
-      <p>{description}</p>
-      <button onClick={handleEditClick}>Edit</button>
-      <button onClick={handleDeleteClick}>Delete</button>
+    )}
+    {editing && (
+      <input
+        value={editedImg}
+        onChange={(e) => setEditedImg(e.target.value)}
+      />
+    )}
+    <p>{selectedBadge.description}</p>
+
+      {/* Render edit and delete buttons */}
+      {!editing && (
+        <div>
+          <button onClick={handleEditClick}>Edit</button>
+          <button onClick={handleDeleteClick}>Delete</button>
+        </div>
+      )}
+
+      {/* Render input fields for editing */}
+      {editing && (
+        <div>
+          <input value={editedName} onChange={(e) => setEditedName(e.target.value)} />
+          <textarea value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)}></textarea>
+          <button onClick={handleSaveClick}>Save</button>
+        </div>
+      )}
     </div>
   );
 };

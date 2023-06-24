@@ -58,10 +58,10 @@ router.post('/create', (req, res) => {
 //PUT Request to edit badges in database
 router.put('/update/:id', (req, res) => {
     const { id } = req.params;
-    const { img, name } = req.body;
+    const { img, name, description } = req.body;
     const query = `UPDATE badges SET img = $1, name = $2, description = $3 WHERE id = $4 RETURNING *`;
     
-    pool.query(query, [img, name, id])
+    pool.query(query, [img, name, description, id])
       .then((result) => {
         if (result.rows.length === 0) {
           res.sendStatus(404); // No badge found with the given ID
