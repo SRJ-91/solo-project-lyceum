@@ -21,6 +21,17 @@ function* fetchDoneGroupsSaga() {
   }
 }
 
+function* fetchGroupDetails(action) {
+  try {
+    const groupId = action.payload;
+    const response = yield call(axios.get, `/api/groups/${groupId}`);
+    yield put({ type: 'SET_SELECTED_GROUP', payload: response.data });
+  } catch (error) {
+    console.log('Error fetching group details:', error);
+  }
+}
+
+
 function* createGroupSaga(action) {
   try {
     yield call(axios.post, '/api/groups/create', action.payload);
@@ -46,6 +57,7 @@ function* updateGroupSaga(action) { //expects a user id plus the groups table ke
 function* watchGroups() {
     yield takeLatest('FETCH_ACTIVE', fetchActiveGroupsSaga);
     yield takeLatest('FETCH_DONE', fetchDoneGroupsSaga);
+    yield takeLatest('FETCH_SELECTED_GROUP', fetchGroupDetails);
     yield takeLatest('CREATE_GROUP', createGroupSaga);
     yield takeLatest('UPDATE_GROUP', updateGroupSaga);
   }

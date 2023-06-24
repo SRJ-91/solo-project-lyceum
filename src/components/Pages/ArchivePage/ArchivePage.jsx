@@ -14,10 +14,11 @@ const ArchivePage = () => {
         dispatch({ type: 'FETCH_DONE' });
       }, []);
 
+      const handleRowClick = (groupId) => {
+        history.push(`/details/${groupId}`);
+      };
+
   return (
-
-
-
     <div>
     <h1>Lyceum Archive</h1>
       <img src={"/images/Archive-image.jpeg"}
@@ -41,7 +42,11 @@ const ArchivePage = () => {
       </thead>
       <tbody>
         {store.map((group) => (
-          <tr key={group.id}>
+          <tr
+          key={group.id}
+          onClick={() => handleRowClick(group.id)}
+          style={{ cursor: 'pointer' }}
+        >
             <td>{group.status ? 'DONE' : 'ACTIVE'}</td>
             <td>{group.region}</td>
             <td>{group.book_name}</td>

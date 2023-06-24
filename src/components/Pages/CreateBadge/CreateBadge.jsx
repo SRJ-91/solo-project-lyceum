@@ -20,6 +20,7 @@ const CreateBadge = () => {
   return (
     <div>
         <h2>Create a badge</h2>
+        <button onClick={() => history.push('/all-badges')}>Return to Badges</button>
         <form onSubmit={addNewBadge}>
         <input 
         type="text" 

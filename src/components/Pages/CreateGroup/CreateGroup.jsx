@@ -31,6 +31,7 @@ const CreateGroup = () => {
 
 
         function handleGroupLaunch() {
+          event.preventDefault();
           // Create a new group object with the input values
           const newGroup = {
             badge_id: selectedBadgeId, // Include the selected badge ID

@@ -21,7 +21,7 @@ router.post('/create', (req, res) => {
     });
 });
 
-//GET Request to Map the group to your launch and details page
+//GET Request to Map ACTIVE or FALSE groups to your launch and page
 router.get('/active', (req, res) => {
     const query = `
     SELECT * FROM groups
@@ -38,6 +38,7 @@ router.get('/active', (req, res) => {
     });
 });
 
+//Get groups that are marked DONE or TRUE
 router.get('/done', (req, res) => {
   const query = `
     SELECT * FROM "groups"
@@ -54,6 +55,28 @@ router.get('/done', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// GET a specific group to map to your details page.
+router.get('/:groupId', (req, res) => {
+  const groupId = req.params.groupId;
+
+  // Query the database to get the group with the specified groupId
+  const queryText = `
+    SELECT * FROM groups
+    WHERE id = $1;
+  `;
+
+  pool.query(queryText, [groupId])
+    .then((result) => {
+      // Return the group data
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error getting group details from database:', error);
+      res.sendStatus(500);
+    });
+});
+
 
 //ALL PUT REQUEST CODE BEYOND THIS POINT IS USED WITHIN THE DETAILS PAGE SCREEN
 

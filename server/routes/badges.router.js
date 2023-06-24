@@ -17,11 +17,30 @@ router.get('/fetch', (req, res) => {
     });
 });
 
+//GET Request to pull the individual badge in the bade details screen
+router.get('/:badgeId', (req, res) => {
+  const badgeId = req.params.badgeId;
+  const queryText = 'SELECT * FROM badges WHERE id = $1;';
+  pool.query(queryText, [badgeId])
+    .then((result) => {
+      if (result.rows.length === 0) {
+        res.sendStatus(404); // Badge not found
+      } else {
+        res.send(result.rows[0]);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching badge details:', error);
+      res.sendStatus(500);
+    });
+});
+
+
 //POST Request to add a badge to database
 router.post('/create', (req, res) => {
     const { img, name } = req.body;
-    const query = `INSERT INTO badges (img, name)
-                   VALUES ($1, $2)
+    const query = `INSERT INTO badges (img, name, description)
+                   VALUES ($1, $2, $3)
                    RETURNING *`;
     const values = [img, name];
     console.log('sending', req.body);
@@ -40,7 +59,7 @@ router.post('/create', (req, res) => {
 router.put('/update/:id', (req, res) => {
     const { id } = req.params;
     const { img, name } = req.body;
-    const query = `UPDATE badges SET img = $1, name = $2 WHERE id = $3 RETURNING *`;
+    const query = `UPDATE badges SET img = $1, name = $2, description = $3 WHERE id = $4 RETURNING *`;
     
     pool.query(query, [img, name, id])
       .then((result) => {

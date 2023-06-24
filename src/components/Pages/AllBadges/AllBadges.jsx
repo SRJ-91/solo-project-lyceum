@@ -14,16 +14,16 @@ const AllBadges = () => {
     }, []);
 
 
-    // const handleBadgeClick = (badgeId) => {
-    //   // Handle badge click event. Unsure if implementing: onClick={() => handleBadgeClick(badge.id)}
-    //   history.push(`/badges/${badgeId}`);
-    // };
+    const handleBadgeClick = (badgeId) => {
+      history.push(`/badge-details/${badgeId}`);
+    };
 
     console.log('BADGES!',badges);
   return (
     <div>
     <h1>Viewing all Badges</h1>
-    <button onClick={() => history.push('/launch')}>Go Back</button>
+    <button onClick={() => history.push('/launch')}>Return to Lyceum</button>
+    <button onClick={() => history.push('/create-badge')}>Create a Badge</button>
     {/* Badges mapping */}
     {badges.map((badge) => (
       <div className='badge' key={badge.id} >
@@ -31,6 +31,7 @@ const AllBadges = () => {
         src={badge.img} 
         alt="Badge"
         width={'200px'}
+        onClick={() => handleBadgeClick(badge.id)}
         />
         <p>{badge.name}</p>
       </div>

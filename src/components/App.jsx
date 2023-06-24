@@ -26,6 +26,8 @@ import AllBadges from './Pages/AllBadges/AllBadges';
 import CreateGroup from './Pages/CreateGroup/CreateGroup';
 import LaunchPage from './Pages/LaunchPage/LaunchPage';
 import ArchivePage from './Pages/ArchivePage/ArchivePage';
+import DetailsPage from './Pages/DetailsPage/DetailsPage';
+import BadgeDetailsPage from './Pages/BadgeDetails/BadgeDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -123,6 +125,10 @@ function App() {
             <AllBadges />
           </Route>
 
+          <Route exact path="/badge-details/:badgeId">
+            <BadgeDetailsPage />
+          </Route>
+
           <Route exact path="/create-group">
             <CreateGroup />
           </Route>
@@ -133,6 +139,10 @@ function App() {
 
           <Route exact path="/archive">
             <ArchivePage />
+          </Route>
+
+          <Route exact path="/details/:groupId">
+            <DetailsPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

@@ -15,6 +15,10 @@ const LaunchPage = () => {
         dispatch({ type: 'FETCH_ACTIVE' });
       }, []);
 
+      const handleRowClick = (groupId) => {
+        history.push(`/details/${groupId}`);
+      };
+
       return (
         <div>
           <h1>Welcome to the Lyceum</h1>
@@ -41,7 +45,11 @@ const LaunchPage = () => {
             </thead>
             <tbody>
               {store.map((group) => (
-               <tr key={group.id}>
+                <tr
+                key={group.id}
+                onClick={() => handleRowClick(group.id)}
+                style={{ cursor: 'pointer' }}
+              >
                <td>{group.status ? 'DONE' : 'ACTIVE'}</td>
                <td>{group.region}</td>
                <td>{group.book_name}</td>
