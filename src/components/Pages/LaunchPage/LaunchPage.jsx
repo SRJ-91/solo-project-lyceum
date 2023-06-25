@@ -27,7 +27,7 @@ const LaunchPage = () => {
              width="500px" 
              />
             <button onClick={() => history.push('/create-group')}>Create Group</button>
-            {/* <button onClick={() => history.push('/registration')}>Create Profile</button>  UNSURE???*/}
+            <button onClick={() => history.push('/all-users')}>All Users</button>
             <button onClick={() => history.push('/all-badges')}>Badges</button>
             <button onClick={() => history.push('/archive')}>Go to Archive</button>
 

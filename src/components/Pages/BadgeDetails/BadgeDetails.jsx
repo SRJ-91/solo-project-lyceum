@@ -49,6 +49,7 @@ const BadgeDetailsPage = () => {
 
   return (
     <div>
+        <button onClick={() => history.push('/all-badges')}>Return to Badges</button>
       {/* Render badge details */}
     <h2>{selectedBadge.name}</h2>
     {!editing && (

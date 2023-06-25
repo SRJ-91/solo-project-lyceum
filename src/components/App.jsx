@@ -28,6 +28,7 @@ import LaunchPage from './Pages/LaunchPage/LaunchPage';
 import ArchivePage from './Pages/ArchivePage/ArchivePage';
 import DetailsPage from './Pages/DetailsPage/DetailsPage';
 import BadgeDetailsPage from './Pages/BadgeDetails/BadgeDetails';
+import AllUsers from './Pages/AllUsers/AllUsers';
 
 function App() {
   const dispatch = useDispatch();
@@ -115,6 +116,10 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+          <Route exact path="/all-users">
+            <AllUsers />
           </Route>
 
           <Route exact path="/create-badge">

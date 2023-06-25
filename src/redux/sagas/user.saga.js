@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+// Saga function to fetch all users
+function* fetchUsers() {
+  try {
+    // Make API request to fetch all users
+    const response = yield axios.get('/api/user/all');
+
+    // Dispatch action to store the fetched users in the Redux store
+    yield put({ type: 'SET_USERS', payload: response.data });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_USERS', fetchUsers);
 }
 
 export default userSaga;

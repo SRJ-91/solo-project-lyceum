@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
+  //State
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [region, setRegion] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [role, setRole] = useState('');
+
+  //hooks
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -15,9 +21,21 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
-      },
+        region: region,
+        avatar: avatar,
+        role: role,
+      }
     });
   }; // end registerUser
+
+  // Clear the form inputs after submission
+  // setUser({
+  //   username: '',
+  //   password: '',
+  //   region: '',
+  //   avatar: '',
+  //   role: '',
+  // });
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -50,6 +68,32 @@ function RegisterForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
+        <label htmlFor="region">Region:</label>
+<input
+  type="text"
+  id="region"
+  placeholder="Enter region"
+  value={region}
+  onChange={(event) => setRegion(event.target.value)}
+/>
+
+<label htmlFor="avatar">Avatar:</label>
+<input
+  type="text"
+  id="avatar"
+  placeholder="Enter avatar URL"
+  value={avatar}
+  onChange={(event) => setAvatar(event.target.value)}
+/>
+
+<label htmlFor="role">Role:</label>
+<input
+  type="text"
+  id="role"
+  placeholder="Enter role"
+  value={role}
+  onChange={(event) => setRole(event.target.value)}
+/>
       </div>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
