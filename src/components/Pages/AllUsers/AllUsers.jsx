@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
-
-
 const AllUsers = () => {
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users);
+    const store = useSelector(store => store.users);
+    console.log('users is', store);
 
 
 
@@ -29,7 +26,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-            {users && users.map((user) => (
+            {store && store.map((user) => (
                 <tr key={user.id}>
                   <td><img src={user.avatar} alt="Avatar" /></td>
                   <td>{user.region}</td>
