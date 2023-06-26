@@ -3,6 +3,8 @@ import errors from './errors.reducer';
 import userReducer from './user.reducer';
 import groupsReducer from './groups.reducer';
 import badgesReducer from './badges.reducer';
+import postsReducer from './posts.reducer';
+import user_groupsReducer from './user_groups.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   user:userReducer, // will have an id and username if someone is logged in
   groups:groupsReducer,
   badges:badgesReducer,
+  posts:postsReducer,
+  members:user_groupsReducer
 });
 
 export default rootReducer;
