@@ -22,7 +22,6 @@ router.get('/all', (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log(result);
       res.send(result.rows);
     })
     .catch((error) => {

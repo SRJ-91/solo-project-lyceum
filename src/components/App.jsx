@@ -29,6 +29,7 @@ import ArchivePage from './Pages/ArchivePage/ArchivePage';
 import DetailsPage from './Pages/DetailsPage/DetailsPage';
 import BadgeDetailsPage from './Pages/BadgeDetails/BadgeDetails';
 import AllUsers from './Pages/AllUsers/AllUsers';
+import RosterControlsAndEssays from './RosterControlsAndEssays/RosterControlsAndEssays';
 
 function App() {
   const dispatch = useDispatch();
@@ -148,6 +149,10 @@ function App() {
 
           <ProtectedRoute exact path="/details/:groupId">
             <DetailsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/test">
+            <RosterControlsAndEssays />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

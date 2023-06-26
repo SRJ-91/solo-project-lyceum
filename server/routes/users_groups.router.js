@@ -8,7 +8,8 @@ router.get('/fetch', (req, res) => {
   
   pool.query(query)
     .then((result) => {
-      res.status(200).send(result.rows);
+      console.log(result.rows);
+      res.send(result.rows);
     })
     .catch((error) => {
       console.error('Error fetching users in group:', error);
