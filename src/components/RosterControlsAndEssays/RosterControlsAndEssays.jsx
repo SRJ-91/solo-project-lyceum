@@ -16,16 +16,21 @@ const RosterControlsAndEssays = ({groupId}) => {
     setIsModalOpen(true);
   };
 
+  function refreshPage(){ 
+    window.location.reload(); 
+}
+
   const handleAddMember = () => {
     // Dispatch an action to add the selectedUser to the userGroup
     dispatch({ type: 'ADD_MEMBERS', payload: {user_id: selectedUser, reading_group_id:groupId, role: 1 } });
     console.log('selected user is',selectedUser);
     setSelectedUser('');
+    refreshPage();
   };
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_ALL_USERS' });
-    dispatch({ type: 'FETCH_MEMBERS' });
+    dispatch({ type: 'FETCH_ALL_USERS'});
+    dispatch({ type: 'FETCH_MEMBERS',payload: groupId });
   }, []);
 
   return (

@@ -36,11 +36,11 @@ CREATE TABLE "user" (
   created_at timestamp default NOW()
 );
 
-
-CREATE TABLE whiteboard (
+CREATE TABLE user_groups (
   id serial PRIMARY KEY,
-  groups_id integer REFERENCES groups(id),
-  notes varchar
+  user_id integer REFERENCES "user"(id),
+  reading_group_id integer REFERENCES groups(id),
+  role integer
 );
 
 CREATE TABLE posts (
@@ -49,15 +49,9 @@ CREATE TABLE posts (
   body text,
   user_id integer REFERENCES "user"(id),
   badge_id integer REFERENCES badges(id),
+  users_groups_id integer REFERENCES user_groups(id),
   status integer,
   created_at timestamp default NOW()
-);
-
-CREATE TABLE user_groups (
-  id serial PRIMARY KEY,
-  user_id integer REFERENCES "user"(id),
-  reading_group_id integer REFERENCES groups(id),
-  role integer
 );
 
 CREATE TABLE users_badges (

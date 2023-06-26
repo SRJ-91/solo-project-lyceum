@@ -2,20 +2,28 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// GET Request to fetch all users in a group
-router.get('/fetch', (req, res) => {
-  const query = 'SELECT * FROM user_groups';
+// GET all members of a user group with additional user details
+router.get('/:groupId', (req, res) => {
+  const groupId = req.params.groupId;
+  const queryText = `
+    SELECT "user".id, "user".avatar, "user".region, "user".username, user_groups.role
+    FROM user_groups
+    JOIN "user" ON user_groups.user_id = "user".id
+    WHERE user_groups.reading_group_id = $1;
+  `;
+  const queryValues = [groupId];
   
-  pool.query(query)
+  pool
+    .query(queryText, queryValues)
     .then((result) => {
-      console.log(result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
-      console.error('Error fetching users in group:', error);
+      console.error('Error fetching members:', error);
       res.sendStatus(500);
     });
 });
+
 
 // POST Request to add a user to a group
 router.post('/add', (req, res) => {

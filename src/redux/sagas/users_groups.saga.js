@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* fetchUserGroupsSaga() {
+function* fetchUserGroupsSaga(action) {
   try {
-    const response = yield call(axios.get, `/api/users_groups/fetch`);
+    const response = yield call(axios.get, `/api/users_groups/${action.payload}`);
     yield put({ type: 'SET_USER_GROUPS', payload: response.data });
     console.log('the payload is', response);
   } catch (error) {
