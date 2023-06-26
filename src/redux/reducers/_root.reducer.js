@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import userReducer from './user.reducer';
+import allUsers from './all_users.reducer';
 import groupsReducer from './groups.reducer';
 import badgesReducer from './badges.reducer';
 import postsReducer from './posts.reducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user:userReducer, // will have an id and username if someone is logged in
   groups:groupsReducer,
   badges:badgesReducer,
+  allUsers:allUsers,
   posts:postsReducer,
   members:user_groupsReducer
 });

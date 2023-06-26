@@ -18,10 +18,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // GET all users
 router.get('/all', (req, res) => {
-  const queryText = 'SELECT * FROM user;';
+  const queryText = 'SELECT * FROM "user";';
   pool
     .query(queryText)
     .then((result) => {
+      console.log(result);
       res.send(result.rows);
     })
     .catch((error) => {

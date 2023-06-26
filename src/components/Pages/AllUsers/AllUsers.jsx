@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const AllUsers = () => {
     const dispatch = useDispatch();
-    const store = useSelector(store => store.users);
+    const store = useSelector(store => store.allUsers);
     console.log('users is', store);
 
 
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_USERS' });
+        dispatch({ type: 'FETCH_ALL_USERS' });
       }, []);
 
     return (

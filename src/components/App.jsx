@@ -14,7 +14,7 @@ import Footer from './Shared/Footer/Footer';
 import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 
 import AboutPage from './Pages/AboutPage/AboutPage';
-import UserPage from './Pages/UserPage/UserPage';
+// import UserPage from './Pages/UserPage/UserPage';
 import InfoPage from './Pages/InfoPage/InfoPage';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
@@ -60,13 +60,13 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -83,7 +83,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/launch" />
               :
               // Otherwise, show the login page
               <LoginPage />
@@ -97,7 +97,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/launch" />
               :
               // Otherwise, show the registration page
               <RegisterPage />
@@ -118,37 +118,37 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/all-users">
+          <ProtectedRoute exact path="/all-users">
             <AllUsers />
-          </Route>
-
-          <Route exact path="/create-badge">
+          </ProtectedRoute>
+              
+          <ProtectedRoute exact path="/create-badge">
             <CreateBadge />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/all-badges">
+          <ProtectedRoute exact path="/all-badges">
             <AllBadges />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/badge-details/:badgeId">
+          <ProtectedRoute exact path="/badge-details/:badgeId">
             <BadgeDetailsPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/create-group">
+          <ProtectedRoute exact path="/create-group">
             <CreateGroup />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/launch">
+          <ProtectedRoute exact path="/launch">
             <LaunchPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/archive">
+          <ProtectedRoute exact path="/archive">
             <ArchivePage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/details/:groupId">
+          <ProtectedRoute exact path="/details/:groupId">
             <DetailsPage />
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

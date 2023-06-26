@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import allUserSaga from './all_users.saga';
 import watchGroups from './groups.saga';
 import watchBadges from './badges.saga';
 import watchWhiteboard from './whiteboard.saga';
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    allUserSaga(),
     watchGroups(),
     watchBadges(),
     watchWhiteboard(),
