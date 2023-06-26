@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import RosterControlsAndEssays from '../../RosterControlsAndEssays/RosterControlsAndEssays';
 
 const DetailsPage = () => {
   const  groupId  = useParams();
@@ -169,6 +170,8 @@ const DetailsPage = () => {
                       groups[0]?.details
                       )}
                  </p>
+
+                 <RosterControlsAndEssays groupId={groupId.groupId}/>
   
           {editing && <button onClick={handleSaveClick}>Save</button>}
         </div>

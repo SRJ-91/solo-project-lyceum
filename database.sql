@@ -6,8 +6,9 @@
 
 CREATE TABLE badges (
   id serial PRIMARY KEY,
-  img varchar,
-  name varchar
+  img varchar(1000),
+  name varchar,
+  description varchar(1000)
 );
 
 CREATE TABLE groups (
@@ -28,12 +29,13 @@ CREATE TABLE groups (
 CREATE TABLE "user" (
   id serial PRIMARY KEY,
   region varchar,
-  username varchar,
-  password varchar,
+  username varchar UNIQUE NOT NULL,
+  password varchar(1000) NOT NULL,
   avatar varchar,
   role integer,
   created_at timestamp default NOW()
 );
+
 
 CREATE TABLE whiteboard (
   id serial PRIMARY KEY,

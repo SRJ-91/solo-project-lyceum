@@ -20,6 +20,7 @@ router.get('/fetch', (req, res) => {
 // POST Request to add a user to a group
 router.post('/add', (req, res) => {
   const { user_id, reading_group_id, role } = req.body;
+  console.log(req.body);
   const query = 'INSERT INTO user_groups (user_id, reading_group_id, role) VALUES ($1, $2, $3) RETURNING *';
   
   pool.query(query, [user_id, reading_group_id, role])

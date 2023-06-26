@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ReactModal from 'react-modal';
 
-const RosterControlsAndEssays = () => {
+const RosterControlsAndEssays = ({groupId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const allUsers = useSelector((state) => state.allUsers);
@@ -18,7 +18,7 @@ const RosterControlsAndEssays = () => {
 
   const handleAddMember = () => {
     // Dispatch an action to add the selectedUser to the userGroup
-    dispatch({ type: 'ADD_MEMBERS', payload: selectedUser });
+    dispatch({ type: 'ADD_MEMBERS', payload: {user_id: selectedUser, reading_group_id:groupId, role: 1 } });
     console.log('selected user is',selectedUser);
     setSelectedUser('');
   };
@@ -70,7 +70,8 @@ const RosterControlsAndEssays = () => {
         <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
           <option value="">Select a user</option>
           {allUsers.map((user) => (
-            <option key={user.id} value={user}>
+            <option key={user.id}
+               value={user.id}>
               {user.username}
             </option>
           ))}
