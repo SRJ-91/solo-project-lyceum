@@ -154,8 +154,7 @@ const CreateGroup = () => {
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         ></textarea>
-
-        <button type="submit">Launch Group</button>
+        <div><button type="submit">Launch Group</button></div>
       </form>
     </div>
   )
