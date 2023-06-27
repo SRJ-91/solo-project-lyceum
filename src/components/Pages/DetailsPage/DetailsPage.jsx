@@ -20,7 +20,8 @@ const DetailsPage = () => {
 
   useEffect(() => {
     // Fetch group data
-    dispatch({ type: 'FETCH_SELECTED_GROUP', payload: groupId.groupId });
+    dispatch({ type: 'FETCH_SELECTED_GROUP', payload: groupId.groupId })
+    dispatch({ type: 'FETCH_POSTS', payload: groupId.groupId });;
   }, []);
 
   // In case group doesn't render. Wraps whole return statement

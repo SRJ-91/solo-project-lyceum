@@ -14,6 +14,8 @@ const PostDetailsPage = () => {
   const [editedPost, setEditedPost] = useState(selectedPost);
   const [editMode, setEditMode] = useState(false);
 
+  console.log('selectedpost is', selectedPost);
+
   useEffect(() => {
     dispatch({ type: 'FETCH_POSTS' });
   }, []);
@@ -23,12 +25,12 @@ const PostDetailsPage = () => {
   }
 
   function handleSaveClick () {
-    dispatch({ type: 'UPDATE_POST', payload: editedPost })
+    dispatch({ type: 'UPDATE_POST', payload: {data:editedPost,groupId: selectedPost.reading_group_id } })
     setEditMode(false);
   }
 
   function handleDeleteClick () {
-    dispatch({ type: 'DELETE_POST', payload: {id:selectedPost.id }})
+    dispatch({ type: 'DELETE_POST', payload: {id:selectedPost.id, groupId: selectedPost.reading_group_id }})
     history.goBack();
   }
 

@@ -7,18 +7,18 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const posts = useSelector((state) => state.posts);
+  const groupId = useSelector((state) => state.groups[0].id)
     console.log('PROPS ARE badgeId is',badgeId, 'userId is', userId, 'userGroupId is', userGroupId);
 
-    const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     // Dispatch an action to fetch the posts data
-    dispatch({ type: 'FETCH_POSTS' });
-  }, []);
+    dispatch({ type: 'FETCH_POSTS', payload: groupId });
+  },[]);
 
   const handleCreateSubmission = () => {
     // Handle the create submission button click
-    // history.push('/submission');
     setShowForm(true);
   };
 

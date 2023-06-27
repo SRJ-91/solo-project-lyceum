@@ -25,7 +25,6 @@ router.get('/:groupId', (req, res) => {
     });
 });
 
-
 // POST Request to add a user to a group
 router.post('/add', (req, res) => {
   const { user_id, reading_group_id, role } = req.body;

@@ -3,12 +3,17 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 // GET Request to fetch all posts
-router.get('/fetch', (req, res) => {
-  const query = 'SELECT * FROM posts ORDER BY id ASC';
+router.get('/fetch/:groupId', (req, res) => {
+  const groupId = req.params.groupId;
+ const query = `SELECT p.id AS id, p.title AS title, p.body AS body, p.user_id AS user_id, p.badge_id AS badge_id, p.users_groups_id AS users_groups_id, ug.reading_group_id AS reading_group_id, ug.role AS role FROM "posts" AS "p"
+ JOIN "user_groups" AS "ug" on "p"."users_groups_id"="ug"."id"
+ WHERE "ug"."reading_group_id"=$1
+ ORDER by "p"."id";`;
   console.log(req.body);
   
-  pool.query(query)
+  pool.query(query, [groupId])
     .then((result) => {
+      console.log('result is', result);
       res.status(200).send(result.rows);
     })
     .catch((error) => {
@@ -20,9 +25,9 @@ router.get('/fetch', (req, res) => {
 // POST Request to create a new post
 router.post('/create', (req, res) => {
 
-  const { title, body, status, created_at } = req.body;
-  const query = 'INSERT INTO posts (title, body, status, created_at) VALUES ($1, $2, $3, $4) RETURNING *';
-  const values = [title, body, status, created_at];
+  const { title, body, status, userId, badgeId, userGroupId, created_at } = req.body;
+  const query = 'INSERT INTO posts (title, body, status, user_id, badge_id, users_groups_id, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
+  const values = [title, body, status, userId, badgeId, userGroupId, created_at];
   console.log('sending', req.body);
   
   pool.query(query, values)
