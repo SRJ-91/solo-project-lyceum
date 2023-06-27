@@ -63,11 +63,12 @@ router.put('/update/:id', (req, res) => {
 });
 
 // DELETE Request to remove a user from a group
-router.delete('/kick/:id', (req, res) => {
-  const memberId = Number(req.params.id);
-  const query = 'DELETE FROM user_groups WHERE id = $1';
+router.delete('/kick/:memberId/:groupId', (req, res) => {
+  const memberId = Number(req.params.memberId);
+  const groupId = Number(req.params.groupId);
+  const query = 'DELETE FROM user_groups WHERE user_id=$1 AND reading_group_id=$2';
   
-  pool.query(query, [memberId])
+  pool.query(query, [memberId, groupId])
     .then(() => {
       res.sendStatus(200);
     })

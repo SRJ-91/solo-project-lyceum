@@ -32,7 +32,7 @@ function* updateUserRoleSaga(action) {
 
 function* removeUserFromGroupSaga(action) {
   try {
-    yield call(axios.delete, `/api/users_groups/kick/${action.payload.memberId}`);
+    yield call(axios.delete, `/api/users_groups/kick/${action.payload.memberId}/${action.payload.groupId}`);
     console.log('kicked user from group:', action.payload.memberId);
     yield put({ type: 'FETCH_MEMBERS', payload: action.payload.groupId});
   } catch (error) {
