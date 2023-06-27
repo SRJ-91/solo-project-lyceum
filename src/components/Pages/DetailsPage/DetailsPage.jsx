@@ -67,6 +67,19 @@ const DetailsPage = () => {
     window.location.reload();
   };
 
+  const handleStatusClick = () => {
+    // Determine the updated status based on the current status
+    const updatedStatus = {
+      id: groups[0]?.id,
+      status: !groups[0]?.status, // Toggle the status value
+    };
+  
+    dispatch({ type: 'UPDATE_STATUS', payload: updatedStatus });
+    history.push('/archive')
+  };
+  
+  
+
 
   return (
     <>
@@ -177,6 +190,13 @@ const DetailsPage = () => {
                       groups[0]?.details
                       )}
                  </p>
+                 {!groups[0]?.status ? (
+                    <button onClick={handleStatusClick}>Mark Done</button>
+                    ) : (
+                    <button onClick={handleStatusClick}>Reactivate</button>
+                    )}
+
+
 
                  <RosterControlsAndEssays groupId={groupId.groupId}/>
                  <Submissions 

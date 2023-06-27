@@ -40,7 +40,7 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
           <tr>
             {/* <th>Avatar</th> */}
             <th>Title</th>
-            <th>Status</th>
+            {/* <th>Status</th> */}
           </tr>
         </thead>
         <tbody>
@@ -53,7 +53,7 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
                 <img src={post.user.avatar} alt="Avatar" />
               </td> */}
               <td>{post.title}</td>
-              <td>{post.status}</td>
+              {/* <td>{post.status}</td> */}
             </tr>
           ))}
         </tbody>

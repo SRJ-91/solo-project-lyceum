@@ -28,6 +28,10 @@ const RosterControlsAndEssays = ({groupId}) => {
     refreshPage();
   };
 
+  const handleKickMember = () => {
+    dispatch({ type: 'REMOVE_USER_FROM_GROUP', payload: member.id })
+  }
+
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_USERS'});
     dispatch({ type: 'FETCH_MEMBERS',payload: groupId });
@@ -57,8 +61,11 @@ const RosterControlsAndEssays = ({groupId}) => {
               <td>{member.username}</td>
               <td>{member.role}</td>
               <td>
-                <button>Edit Role</button>
-                <button>Kick</button>
+                {/* <button>Edit Role</button> */}
+                <button onClick={() => dispatch({ type: 'REMOVE_USER_FROM_GROUP', payload: {memberId:member.id, groupId }}) }>
+                    Kick
+                </button>
+
               </td>
             </tr>
           ))}

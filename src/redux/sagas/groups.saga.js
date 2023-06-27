@@ -51,6 +51,16 @@ function* updateGroupSaga(action) { //expects a user id plus the groups table ke
       console.log('Error updating group', error);
     }
   }
+
+  function* updateStatusSaga(action) { //expects a user id plus the groups table keys
+    try {
+      yield call(axios.put, `/api/groups/handle-status/${action.payload.id}`, action.payload);
+      console.log('Successfully changed group status', action.payload);
+      yield put({ type: 'FETCH_GROUPS' });
+    } catch (error) {
+      console.log('Error updating group status', error);
+    }
+  }
   
 
 // Watcher saga for groups
@@ -60,6 +70,7 @@ function* watchGroups() {
     yield takeLatest('FETCH_SELECTED_GROUP', fetchGroupDetails);
     yield takeLatest('CREATE_GROUP', createGroupSaga);
     yield takeLatest('UPDATE_GROUP', updateGroupSaga);
+    yield takeLatest('UPDATE_STATUS', updateStatusSaga);
   }
   
   export default watchGroups;

@@ -81,14 +81,13 @@ router.get('/:groupId', (req, res) => {
 //ALL PUT REQUEST CODE BEYOND THIS POINT IS USED WITHIN THE DETAILS PAGE SCREEN
 
 // PUT Request to update group details
-// PUT Request to update group details
 router.put('/update/:id', (req, res) => {
     const { id } = req.params;
-    const { region, book_name, team_name, cohort, start_date, end_date, cover, logo, details, status } = req.body;
-    const query = `UPDATE groups SET region = $1, book_name = $2, team_name = $3, cohort = $4, start_date = $5, end_date = $6,
-                   cover = $7, logo = $8, details = $9, status = $10
-                   WHERE id = $11`;
-    const values = [region, book_name, team_name, cohort, start_date, end_date, cover, logo, details, status, id];
+    const { region, book_name, logo, cohort, start_date, end_date, cover, details } = req.body;
+    const query = `UPDATE groups SET region = $1, book_name = $2, logo = $3, cohort = $4, start_date = $5, end_date = $6,
+                   cover = $7, details = $8
+                   WHERE id = $9`;
+    const values = [region, book_name, logo, cohort, start_date, end_date, cover, details, id];
   
     pool.query(query, values)
       .then(() => {
@@ -100,6 +99,26 @@ router.put('/update/:id', (req, res) => {
       });
 });
 
+// PUT Request to update group status
+router.put('/handle-status/:id', (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  const query = `
+    UPDATE groups
+    SET status = $1
+    WHERE id = $2
+  `;
+  const values = [status, id];
+
+  pool.query(query, values)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error('Error updating group status:', error);
+      res.sendStatus(500);
+    });
+});
 
 
 

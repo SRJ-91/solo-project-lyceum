@@ -64,10 +64,10 @@ router.put('/update/:id', (req, res) => {
 
 // DELETE Request to remove a user from a group
 router.delete('/kick/:id', (req, res) => {
-  const { id } = req.params;
+  const memberId = Number(req.params.id);
   const query = 'DELETE FROM user_groups WHERE id = $1';
   
-  pool.query(query, [id])
+  pool.query(query, [memberId])
     .then(() => {
       res.sendStatus(200);
     })
