@@ -6,12 +6,13 @@ const pool = require('../modules/pool');
 router.get('/:groupId', (req, res) => {
   const groupId = req.params.groupId;
   const queryText = `
-    SELECT "user".id, "user".avatar, "user".region, "user".username, user_groups.role
+    SELECT "user".id, "user".avatar, "user".region, "user".username, user_groups.role, user_groups.id AS user_groups_id
     FROM user_groups
     JOIN "user" ON user_groups.user_id = "user".id
     WHERE user_groups.reading_group_id = $1;
   `;
   const queryValues = [groupId];
+  console.log(queryValues);
   
   pool
     .query(queryText, queryValues)

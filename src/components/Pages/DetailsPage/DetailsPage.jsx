@@ -4,10 +4,17 @@ import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import RosterControlsAndEssays from '../../RosterControlsAndEssays/RosterControlsAndEssays';
+import Submissions from '../Submissions/Submissions';
 
 const DetailsPage = () => {
   const  groupId  = useParams();
   const groups = useSelector((store) => store.groups);
+  const user = useSelector((store) => store.user);
+  const userGroupId = useSelector((store) => {
+    const filteredMembers = store.members.filter(member => member.id === user.id);
+    return filteredMembers.length > 0 ? filteredMembers[0].user_groups_id : '';
+  });
+  console.log('the value is', userGroupId);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -172,6 +179,11 @@ const DetailsPage = () => {
                  </p>
 
                  <RosterControlsAndEssays groupId={groupId.groupId}/>
+                 <Submissions 
+                 badgeId={groups[0].badge_id}
+                 userId={user.id}
+                 userGroupId={userGroupId}
+                 />
   
           {editing && <button onClick={handleSaveClick}>Save</button>}
         </div>

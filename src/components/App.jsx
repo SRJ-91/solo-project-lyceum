@@ -30,6 +30,9 @@ import DetailsPage from './Pages/DetailsPage/DetailsPage';
 import BadgeDetailsPage from './Pages/BadgeDetails/BadgeDetails';
 import AllUsers from './Pages/AllUsers/AllUsers';
 import RosterControlsAndEssays from './RosterControlsAndEssays/RosterControlsAndEssays';
+import Submissions from './Pages/Submissions/Submissions';
+import NewSubmissionPage from './Pages/NewSubmissionPage/NewSubmissionPage';
+import PostDetailsPage from './Pages/PostDetailsPage/PostDetailsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -153,6 +156,18 @@ function App() {
 
           <ProtectedRoute exact path="/test">
             <RosterControlsAndEssays />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/submissions">
+            <Submissions />
+          </ProtectedRoute>
+          
+          <ProtectedRoute exact path="/new-submission">
+              <NewSubmissionPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/posts/:postId">
+            <PostDetailsPage />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
