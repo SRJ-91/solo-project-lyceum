@@ -14,7 +14,7 @@ const DetailsPage = () => {
     const filteredMembers = store.members.filter(member => member.id === user.id);
     return filteredMembers.length > 0 ? filteredMembers[0].user_groups_id : '';
   });
-  console.log('the value is', userGroupId);
+  console.log('the value of userGroupId is', userGroupId);
   const dispatch = useDispatch();
   const history = useHistory();
 

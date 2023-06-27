@@ -7,7 +7,7 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const posts = useSelector((state) => state.posts);
-    console.log('PROPS ARE',badgeId, userId, userGroupId);
+    console.log('PROPS ARE badgeId is',badgeId, 'userId is', userId, 'userGroupId is', userGroupId);
 
     const [showForm, setShowForm] = useState(false);
 
