@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Heading, Text, Container } from '@chakra-ui/react'
 
 const PostDetailsPage = () => {
 
@@ -35,8 +36,8 @@ const PostDetailsPage = () => {
   }
 
   return (
-    <div>
-      <h1>{selectedPost.title}</h1>
+    <Container my="30px" p="10px">
+      <Heading>{selectedPost.title}</Heading>
       {editMode ? (
         <div>
           <input
@@ -44,10 +45,10 @@ const PostDetailsPage = () => {
             value={editedPost.title}
             onChange={(e) => setEditedPost({ ...editedPost, title: e.target.value })}
           />
-          <textarea
+          <Text marginLeft="30px"> 
             value={editedPost.body}
             onChange={(e) => setEditedPost({ ...editedPost, body: e.target.value })}
-          ></textarea>
+          </Text>
         </div>
       ) : (
         <p>{selectedPost.body}</p>
@@ -62,7 +63,7 @@ const PostDetailsPage = () => {
       <button onClick={handleDeleteClick}>
         Delete
       </button>
-    </div>
+      </Container>
   );
 };
 

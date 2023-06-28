@@ -1,0 +1,17 @@
+/* * {
+    background-image: url("/./public/images/Lyceum-Image.webp");
+    background-repeat: no-repeat;
+} */
+
+.lyceum-picture {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard {
+    background-image: url("/./public/images/Lyceum-Image.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 33vh;
+}

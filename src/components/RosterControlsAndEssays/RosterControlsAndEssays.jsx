@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ReactModal from 'react-modal';
+//import ReactModal from 'react-modal';
 
 const RosterControlsAndEssays = ({groupId}) => {
   const dispatch = useDispatch();
@@ -9,12 +9,12 @@ const RosterControlsAndEssays = ({groupId}) => {
   const allUsers = useSelector((state) => state.allUsers);
   const members = useSelector((state) => state.members);
   console.log('members are', members);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  //const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState('');
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
   function refreshPage(){ 
     window.location.reload(); 
@@ -39,7 +39,7 @@ const RosterControlsAndEssays = ({groupId}) => {
 
   return (
     <div>
-      <button onClick={openModal}>Add Member</button>
+      {/* <button onClick={openModal}>Add Member</button> */}
 
       <table>
         <thead>
@@ -72,12 +72,12 @@ const RosterControlsAndEssays = ({groupId}) => {
         </tbody>
       </table>
 
-      <ReactModal
+      {/* <ReactModal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Add Member Modal"
-      >
-        <h2>Add Member</h2>
+      > */}
+        {/* <h2>Add Member</h2>
 
         <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
           <option value="">Select a user</option>
@@ -89,7 +89,7 @@ const RosterControlsAndEssays = ({groupId}) => {
           ))}
         </select>
         <button onClick={handleAddMember}>Enlist</button>
-      </ReactModal>
+      </ReactModal> */}
     </div>
   );
 };

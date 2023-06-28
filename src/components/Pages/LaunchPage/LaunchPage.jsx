@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import "./LaunchPage.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { format } from 'date-fns';
-
+import { Heading, Container, Image, Flex, Box, VStack } from '@chakra-ui/react'
 
 const LaunchPage = () => {
 
@@ -20,12 +21,26 @@ const LaunchPage = () => {
       };
 
       return (
-        <div>
-          <h1>Welcome to the Lyceum</h1>
-            <img src={"/images/Lyceum-Image.webp"}
-             alt="Lyceum" 
-             width="500px" 
+          <Flex direction={'column'}>
+            <Box className='dashboard'>
+            <Heading textAlign={'center'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
+            <VStack>
+            <button onClick={() => history.push('/create-group')}>Create Group</button>
+            <button onClick={() => history.push('/all-users')}>All Users</button>
+            <button onClick={() => history.push('/all-badges')}>Badges</button>
+            <button onClick={() => history.push('/archive')}>Go to Archive</button>
+            </VStack>
+            </Box> 
+            {/* <div className='lyceum-picture'>
+            <Image 
+              src={"/images/Lyceum-Image.webp"}
+              alt="Lyceum" 
+              width="700px"
+              fit={'contain'} 
+              align={"center"}
              />
+             </div> */}
+           
             <button onClick={() => history.push('/create-group')}>Create Group</button>
             <button onClick={() => history.push('/all-users')}>All Users</button>
             <button onClick={() => history.push('/all-badges')}>Badges</button>
@@ -61,7 +76,7 @@ const LaunchPage = () => {
               ))}
             </tbody>
           </table>
-        </div>
+          </Flex>
       );
       
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ReactModal from 'react-modal';
+// import ReactModal from 'react-modal';
 
 
 const MembersAndEssays = () => {
@@ -16,9 +16,9 @@ const MembersAndEssays = () => {
 
     console.log(users);
 
-    const openModal = () => {
-        setIsModalOpen(true);
-      };
+    // const openModal = () => {
+    //     setIsModalOpen(true);
+    //   };
 
       const handleAddMember = () => {
         // Dispatch an action to add the selectedUser to the userGroup
@@ -34,7 +34,7 @@ const MembersAndEssays = () => {
 
       return (
         <div>
-          <button onClick={openModal}>Add Member</button>
+          {/* <button onClick={openModal}>Add Member</button> */}
     
           {/* <table>
             <thead>
@@ -64,7 +64,7 @@ const MembersAndEssays = () => {
             </tbody>
           </table> */}
     
-          <ReactModal
+          {/* <ReactModal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
             contentLabel="Add Member Modal"
@@ -73,14 +73,14 @@ const MembersAndEssays = () => {
     
             <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
               <option value="">Select a user</option>
-              {/* {Object.values(users).map((user) => (
+              {Object.values(users).map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.username}
                 </option>
-              ))} */}
+              ))}
             </select>
             <button onClick={handleAddMember}>Enlist</button>
-          </ReactModal>
+          </ReactModal> */}
         </div>
       );
       
