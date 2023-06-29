@@ -1,10 +1,10 @@
-.Table-Box {
+.Archive-Table-Box {
     background-color: hsla(55, 28%, 92%, 0.282);
     font-weight: bold;
 }
 
-.dashboard {
-    background-image: url("/./public/images/Lyceum-Image.webp");
+.archive-dashboard {
+    background-image: url("/./public/images/Archive-image.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

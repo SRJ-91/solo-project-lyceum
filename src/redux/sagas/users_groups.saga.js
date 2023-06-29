@@ -15,7 +15,7 @@ function* addUserToGroupSaga(action) { //expecting groupId, userId, role
   try {
     yield call(axios.post, `/api/users_groups/add`, action.payload);
     console.log('Successfully created users_group', action.payload);
-    yield put({ type: 'FETCH_MEMBERS'});
+    yield put({ type: 'FETCH_MEMBERS', payload: action.reading_group_id });;
   } catch (error) {
     console.error('Error adding user to group:', error);
   }

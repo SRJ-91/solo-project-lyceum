@@ -47,7 +47,7 @@ router.post('/create', (req, res) => {
     pool.query(query, values)
     .then((result) => {
       res.status(201).send(result.rows[0]);
-      console.log('result is', result);
+      // console.log('result is', result);
     })
     .catch((error) => {
       console.error('Error creating a group:', error);

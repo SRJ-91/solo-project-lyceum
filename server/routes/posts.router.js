@@ -13,7 +13,7 @@ router.get('/fetch/:groupId', (req, res) => {
   
   pool.query(query, [groupId])
     .then((result) => {
-      console.log('result is', result);
+      // console.log('result is', result);
       res.status(200).send(result.rows);
     })
     .catch((error) => {

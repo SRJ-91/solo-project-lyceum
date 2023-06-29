@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import ReactModal from 'react-modal';
+import {
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input,Select,Option, Button, Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton, } 
+  from '@chakra-ui/react'
 
 
 const MembersAndEssays = () => {
@@ -16,9 +18,9 @@ const MembersAndEssays = () => {
 
     console.log(users);
 
-    // const openModal = () => {
-    //     setIsModalOpen(true);
-    //   };
+    const openModal = () => {
+        setIsModalOpen(true);
+      };
 
       const handleAddMember = () => {
         // Dispatch an action to add the selectedUser to the userGroup
@@ -34,53 +36,56 @@ const MembersAndEssays = () => {
 
       return (
         <div>
-          {/* <button onClick={openModal}>Add Member</button> */}
+          <Button onClick={openModal}>Add Member</Button>
     
-          {/* <table>
-            <thead>
-              <tr>
-                <th>Avatar</th>
-                <th>Region</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <TableContainer>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th>Avatar</Th>
+                <Th>Region</Th>
+                <Th>Username</Th>
+                <Th>Role</Th>
+                <Th>Actions</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
               {members.map((member) => (
-                <tr key={member.id}>
-                  <td>
+                <Tr key={member.id}>
+                  <Td>
                     <img src={member.avatar} alt="Avatar" />
-                  </td>
-                  <td>{member.region}</td>
-                  <td>{member.username}</td>
-                  <td>{member.role}</td>
-                  <td>
-                    <button>Edit Role</button>
-                    <button>Kick</button>
-                  </td>
-                </tr>
+                  </Td>
+                  <Td>{member.region}</Td>
+                  <Td>{member.username}</Td>
+                  <Td>{member.role}</Td>
+                  <Td>
+                    <Button>Edit Role</Button>
+                    <Button>Kick</Button>
+                  </Td>
+                </Tr>
               ))}
-            </tbody>
-          </table> */}
+            </Tbody>
+          </Table>
+          </TableContainer>
     
-          {/* <ReactModal
+          <Modal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
             contentLabel="Add Member Modal"
-          >
-            <h2>Add Member</h2>
+            >
+            <Heading>Add Member</Heading>
     
-            <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-              <option value="">Select a user</option>
+            <Select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+              <Option value="">Select a user</Option>
               {Object.values(users).map((user) => (
-                <option key={user.id} value={user.id}>
+                <Option key={user.id} value={user.id}>
                   {user.username}
-                </option>
+                </Option>
               ))}
-            </select>
-            <button onClick={handleAddMember}>Enlist</button>
-          </ReactModal> */}
+            </Select>
+            <Button onClick={handleAddMember}>Enlist</Button>
+            <Button onClick={setIsModalOpen(false)}>Close</Button>
+          </Modal>
         </div>
       );
       

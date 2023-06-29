@@ -120,3 +120,7 @@ form {
 input, select {
   width: 25%;
 }
+
+.app-background {
+  background-image: url(/./public/images/greek-background.jpeg);
+}

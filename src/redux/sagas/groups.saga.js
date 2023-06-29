@@ -36,41 +36,42 @@ function* createGroupSaga(action) {
   try {
     yield call(axios.post, '/api/groups/create', action.payload);
     console.log('Successfully created group', action.payload);
-    yield put({ type: 'FETCH_GROUPS' });
+    yield put({ type: 'FETCH_ACTIVE' });
   } catch (error) {
     console.log('Error in creating a group', error);
   }
 }
 
 function* updateGroupSaga(action) { //expects a user id plus the groups table keys
-    try {
-      yield call(axios.put, `/api/groups/update/${action.payload.id}`, action.payload);
-      console.log('Successfully updated group', action.payload);
-      yield put({ type: 'FETCH_GROUPS' });
-    } catch (error) {
-      console.log('Error updating group', error);
-    }
+  try {
+    yield call(axios.put, `/api/groups/update/${action.payload.id}`, action.payload);
+    console.log('Successfully updated group', action.payload);
+    // yield put({ type: 'FETCH_ACTIVE' });
+    yield put ({ type: 'FETCH_SELECTED_GROUP', payload: action.payload.id })
+  } catch (error) {
+    console.log('Error updating group', error);
   }
+}
 
-  function* updateStatusSaga(action) { //expects a user id plus the groups table keys
-    try {
-      yield call(axios.put, `/api/groups/handle-status/${action.payload.id}`, action.payload);
-      console.log('Successfully changed group status', action.payload);
-      yield put({ type: 'FETCH_GROUPS' });
-    } catch (error) {
-      console.log('Error updating group status', error);
-    }
+function* updateStatusSaga(action) { //expects a user id plus the groups table keys
+  try {
+    yield call(axios.put, `/api/groups/handle-status/${action.payload.id}`, action.payload);
+    console.log('Successfully changed group status', action.payload);
+    yield put({ type: 'FETCH_ACTIVE' });
+  } catch (error) {
+    console.log('Error updating group status', error);
   }
-  
+}
+
 
 // Watcher saga for groups
 function* watchGroups() {
-    yield takeLatest('FETCH_ACTIVE', fetchActiveGroupsSaga);
-    yield takeLatest('FETCH_DONE', fetchDoneGroupsSaga);
-    yield takeLatest('FETCH_SELECTED_GROUP', fetchGroupDetails);
-    yield takeLatest('CREATE_GROUP', createGroupSaga);
-    yield takeLatest('UPDATE_GROUP', updateGroupSaga);
-    yield takeLatest('UPDATE_STATUS', updateStatusSaga);
-  }
-  
-  export default watchGroups;
+  yield takeLatest('FETCH_ACTIVE', fetchActiveGroupsSaga);
+  yield takeLatest('FETCH_DONE', fetchDoneGroupsSaga);
+  yield takeLatest('FETCH_SELECTED_GROUP', fetchGroupDetails);
+  yield takeLatest('CREATE_GROUP', createGroupSaga);
+  yield takeLatest('UPDATE_GROUP', updateGroupSaga);
+  yield takeLatest('UPDATE_STATUS', updateStatusSaga);
+}
+
+export default watchGroups;

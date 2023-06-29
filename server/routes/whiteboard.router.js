@@ -26,7 +26,7 @@ router.post('/create', (req, res) => {
     pool.query(query, [notes])
     .then((result) => {
       res.status(201).send(result.rows[0]);
-      console.log('result is', result);
+      // console.log('result is', result);
     })
     .catch((error) => {
       console.error('Error logging the whiteboard:', error);

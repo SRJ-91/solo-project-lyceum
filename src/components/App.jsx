@@ -45,7 +45,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='app-background'>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -161,7 +161,7 @@ function App() {
           <ProtectedRoute exact path="/submissions">
             <Submissions />
           </ProtectedRoute>
-          
+
           <ProtectedRoute exact path="/new-submission">
               <NewSubmissionPage />
           </ProtectedRoute>

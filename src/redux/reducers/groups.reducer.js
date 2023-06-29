@@ -6,8 +6,6 @@ export default function groupsReducer(state = [], action) {
         return action.payload;
       case 'SET_SELECTED_GROUP':
         return action.payload;
-      case 'CREATE_GROUP':
-        return [...state, action.payload];
       default:
         return state;
     }

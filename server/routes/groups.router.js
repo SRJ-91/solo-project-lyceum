@@ -4,16 +4,16 @@ const pool = require('../modules/pool');
 
 //POST Request to create a new reading group
 router.post('/create', (req, res) => {
-    const { badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details } = req.body;
-    const query = `INSERT INTO groups (badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
+  const { badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details } = req.body;
+  const query = `INSERT INTO groups (badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
                    RETURNING *`;
-    const values = [badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details];
-    console.log('sending', req.body);
-    pool.query(query, values)
+  const values = [badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details];
+  console.log('sending', req.body);
+  pool.query(query, values)
     .then((result) => {
       res.status(201).send(result.rows[0]);
-      console.log('result is', result);
+      // console.log('result is', result);
     })
     .catch((error) => {
       console.error('Error creating a group:', error);
@@ -23,14 +23,14 @@ router.post('/create', (req, res) => {
 
 //GET Request to Map ACTIVE or FALSE groups to your launch and page
 router.get('/active', (req, res) => {
-    const query = `
+  const query = `
     SELECT * FROM groups
     WHERE "status" = false 
     ORDER BY "start_date" DESC`;
-    pool.query(query)
+  pool.query(query)
     .then((result) => {
       res.status(200).send(result.rows);
-      console.log('fetching', result.rows);
+      // console.log('fetching', result.rows);
     })
     .catch((error) => {
       console.error('Error fetching a group:', error);
@@ -82,21 +82,23 @@ router.get('/:groupId', (req, res) => {
 
 // PUT Request to update group details
 router.put('/update/:id', (req, res) => {
-    const { id } = req.params;
-    const { region, book_name, logo, cohort, start_date, end_date, cover, details } = req.body;
-    const query = `UPDATE groups SET region = $1, book_name = $2, logo = $3, cohort = $4, start_date = $5, end_date = $6,
-                   cover = $7, details = $8
-                   WHERE id = $9`;
-    const values = [region, book_name, logo, cohort, start_date, end_date, cover, details, id];
+  const { id } = req.params;
+  const { region, book_name, logo, cohort, start_date, end_date, cover, details, team_name } = req.body;
+  const query = `UPDATE groups SET region = $1, book_name = $2, logo = $3, cohort = $4, start_date = $5, end_date = $6,
+                   cover = $7, details = $8, team_name = $9
+                   WHERE id = $10 
+                   RETURNING *`;
+  const values = [region, book_name, logo, cohort, start_date, end_date, cover, details, team_name, id];
   
-    pool.query(query, values)
-      .then(() => {
-        res.sendStatus(200);
-      })
-      .catch((error) => {
-        console.error('Error updating group:', error);
-        res.sendStatus(500);
-      });
+  pool.query(query, values)
+    .then((result) => {
+      console.log(`Updated: `, result.rows[0]);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error('Error updating group:', error);
+      res.sendStatus(500);
+    });
 });
 
 // PUT Request to update group status
@@ -132,7 +134,7 @@ router.put('/handle-status/:id', (req, res) => {
 //     const { region, book_name, team_name, cohort, start_date, end_date } = req.body;
 //     const query = `UPDATE groups SET region = $1, book_name = $2, team_name = $3, cohort = $4, start_date = $5, end_date = $6
 //                    WHERE id = $7`;
-  
+
 //     pool.query(query, [region, book_name, team_name, cohort, start_date, end_date, id])
 //       .then(() => {
 //         res.sendStatus(200);
@@ -149,7 +151,7 @@ router.put('/handle-status/:id', (req, res) => {
 //     const { cover } = req.body;
 //     const query = `UPDATE groups SET cover = $1
 //                    WHERE id = $2`;
-  
+
 //     pool.query(query, [cover, id])
 //       .then(() => {
 //         res.sendStatus(200);
@@ -166,7 +168,7 @@ router.put('/handle-status/:id', (req, res) => {
 //     const { logo } = req.body;
 //     const query = `UPDATE groups SET logo = $1
 //                    WHERE id = $2`;
-  
+
 //     pool.query(query, [logo, id])
 //       .then(() => {
 //         res.sendStatus(200);
@@ -183,7 +185,7 @@ router.put('/handle-status/:id', (req, res) => {
 //     const { details } = req.body;
 //     const query = `UPDATE groups SET details = $1
 //                    WHERE id = $2`;
-  
+
 //     pool.query(query, [details, id])
 //       .then(() => {
 //         res.sendStatus(200);
@@ -199,7 +201,7 @@ router.put('/handle-status/:id', (req, res) => {
 //     const { id } = req.params;
 //     const query = `UPDATE groups SET status = false
 //                    WHERE id = $1`;
-  
+
 //     pool.query(query, [id])
 //       .then(() => {
 //         res.sendStatus(200);

@@ -1,85 +1,87 @@
 import React, { useEffect, useState } from 'react';
+import "./CreateGroup.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { format } from 'date-fns';
+import { Container, Flex, Heading, Box, FormControl, FormLabel, Input, FormHelperText, Textarea, Checkbox, Select } from "@chakra-ui/react"
+import { Form } from "react-router-dom";
 
 const CreateGroup = () => {
 
-    const history = useHistory();
-    const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
 
-        // States for every input on form, naming is consistent with SQL database
-        const [book_name, setBook_Name] = useState('');
-        const [cover, setCover] = useState('');
-        const [team_name, setTeam_Name] = useState('');
-        const [logo, setLogo] = useState('');
-        const [start_date, setStart_Date] = useState('');
-        const [end_date, setEnd_Date] = useState('');
-        const [cohort, setCohort] = useState('');
-        const [region, setRegion] = useState('');
-        const [details, setDetails] = useState('');
+  // States for every input on form, naming is consistent with SQL database
+  const [book_name, setBook_Name] = useState('');
+  const [cover, setCover] = useState('');
+  const [team_name, setTeam_Name] = useState('');
+  const [logo, setLogo] = useState('');
+  const [start_date, setStart_Date] = useState('');
+  const [end_date, setEnd_Date] = useState('');
+  const [cohort, setCohort] = useState('');
+  const [region, setRegion] = useState('');
+  const [details, setDetails] = useState('');
 
-        const [selectedBadgeId, setSelectedBadgeId] = useState('');
+  const [selectedBadgeId, setSelectedBadgeId] = useState('');
 
-        useEffect(() => {
-          // Fetch badge data
-          dispatch({ type: 'FETCH_BADGES' });
-        }, []);
+  useEffect(() => {
+    // Fetch badge data
+    dispatch({ type: 'FETCH_BADGES' });
+  }, []);
 
-        const badges = useSelector(store => store.badges);
-
-
-        function handleGroupLaunch() {
-          event.preventDefault();
-          // Create a new group object with the input values
-          const newGroup = {
-            badge_id: selectedBadgeId, // Include the selected badge ID
-            book_name,
-            cover,
-            team_name,
-            logo,
-            start_date,
-            end_date,
-            cohort,
-            region,
-            details,
-          };
-        
-          // Dispatch the CREATE_GROUP action with the new group object
-          dispatch({ type: 'CREATE_GROUP', payload: newGroup });
-
-          console.log('The group sent was', newGroup);
-        
-          // Navigate to the "/launch" screen
-          dispatch({ type: 'FETCH_GROUPS'})
-          history.push('/launch');
-        }
-    
+  const badges = useSelector(store => store.badges);
 
 
+  function handleGroupLaunch() {
+    event.preventDefault();
+    // Create a new group object with the input values
+    const newGroup = {
+      badge_id: selectedBadgeId, // Include the selected badge ID
+      book_name,
+      cover,
+      team_name,
+      logo,
+      start_date,
+      end_date,
+      cohort,
+      region,
+      details,
+    };
+
+    // Dispatch the CREATE_GROUP action with the new group object
+    dispatch({ type: 'CREATE_GROUP', payload: newGroup });
+
+    console.log('The group sent was', newGroup);
+
+    // Navigate to the "/launch" screen
+    history.push('/launch');
+  }
+
+
+  // onSubmit={handleGroupLaunch}>
 
   return (
-    <div>
-      <h1>Create Group</h1>
+    <Container className='create-container' centerContent maxW={'xl'}>
+      <Heading marginBottom={'15px'}>Create Group</Heading>
       <button onClick={() => history.push('/launch')}>Go Back</button>
-      <form 
-      onSubmit={handleGroupLaunch}>
+      <form
+        onSubmit={handleGroupLaunch}>
 
         <label htmlFor="badge">Badge:</label>
-          <select
-            id="badge"
-            value={selectedBadgeId}
-            onChange={(e) => setSelectedBadgeId(e.target.value)}>
-            <option value="">Select Badge</option>{badges.map((badge) => (
+        <Select
+          id="badge"
+          value={selectedBadgeId}
+          onChange={(e) => setSelectedBadgeId(e.target.value)}>
+          <option value="">Select Badge</option>{badges.map((badge) => (
             <option key={badge.id} value={badge.id}>
-            {badge.name}
+              {badge.name}
             </option>
-              ))}
-            </select>
+          ))}
+        </Select>
 
         <label htmlFor="book_name">Book Name:</label>
-        <input
+        <Input
           type="text"
           id="book_name"
           value={book_name}
@@ -87,7 +89,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="cover">Cover:</label>
-        <input
+        <Input
           type="text"
           id="cover"
           value={cover}
@@ -95,7 +97,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="team_name">Team Name:</label>
-        <input
+        <Input
           type="text"
           id="team_name"
           value={team_name}
@@ -103,7 +105,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="logo">Logo:</label>
-        <input
+        <Input
           type="text"
           id="logo"
           value={logo}
@@ -111,7 +113,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="start_date">Start Date:</label>
-        <input
+        <Input
           type="date"
           id="start_date"
           value={start_date}
@@ -119,7 +121,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="end_date">End Date:</label>
-        <input
+        <Input
           type="date"
           id="end_date"
           value={end_date}
@@ -127,7 +129,7 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="cohort">Cohort:</label>
-        <select
+        <Select
           id="cohort"
           value={cohort}
           onChange={(e) => setCohort(e.target.value)}
@@ -138,10 +140,10 @@ const CreateGroup = () => {
           <option value="2">Cohort 2</option>
           <option value="3">Cohort 3</option>
           {/* Add more options as needed */}
-        </select>
+        </Select>
 
         <label htmlFor="region">Region:</label>
-        <input
+        <Input
           type="text"
           id="region"
           value={region}
@@ -149,14 +151,14 @@ const CreateGroup = () => {
         />
 
         <label htmlFor="details">Details:</label>
-        <textarea
+        <Textarea
           id="details"
           value={details}
           onChange={(e) => setDetails(e.target.value)}
-        ></textarea>
+        ></Textarea>
         <div><button type="submit">Launch Group</button></div>
       </form>
-    </div>
+    </Container>
   )
 }
 
