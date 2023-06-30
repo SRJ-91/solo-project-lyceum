@@ -21,15 +21,17 @@ const LaunchPage = () => {
       };
 
       return (
+        <Box className='dashboard'>
+        <Container maxW={'1200px'}>
           <Flex direction={'column'}>
-            <Box className='dashboard'>
-            <Heading textAlign={'center'} color={'black'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
-            <VStack>
+            
+            <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
+            <VStack className='button-container'>
             <ButtonGroup>
-            <Button onClick={() => history.push('/create-group')}>Create Group</Button>
-            <Button onClick={() => history.push('/all-users')}>All Users</Button>
-            <Button onClick={() => history.push('/all-badges')}>Badges</Button>
-            <Button onClick={() => history.push('/archive')}>Go to Archive</Button>
+            <Button  onClick={() => history.push('/create-group')}>Create Group</Button>
+            <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-users')}>All Users</Button>
+            <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-badges')}>Badges</Button>
+            <Button variant={'outline'} color ={'white'} onClick={() => history.push('/archive')}>Go to Archive</Button>
             </ButtonGroup>
             </VStack>
            
@@ -68,8 +70,9 @@ const LaunchPage = () => {
             </Table>
             </TableContainer>
           </Box>
-          </Box>
           </Flex>
+          </Container>
+          </Box>
       );
       
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./DetailsPage.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -6,7 +7,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import RosterControlsAndEssays from '../../RosterControlsAndEssays/RosterControlsAndEssays';
 import Submissions from '../Submissions/Submissions';
 import {
-  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input,Button,ButtonGroup,Flex,Textarea } 
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image, Text, Container,Input,Button,ButtonGroup,Flex,Textarea,Box } 
   from '@chakra-ui/react'
 
 const DetailsPage = () => {
@@ -88,8 +89,13 @@ const DetailsPage = () => {
   return (
     <>
       {allowRefresh !== undefined ? (
+        <Box className='details-art'>
+          <Container maxW={'1200px'}>
         <Flex direction={'column'}>
-          <Image 
+          <Flex justify={'space-between'}>
+            <div>
+          <Image
+          className='portraits' 
           src={groups[0]?.cover} 
           alt="Cover"
           boxSize={'300px'}
@@ -101,19 +107,12 @@ const DetailsPage = () => {
               onChange={(e) => setEditedValues({ ...editedValues, cover: e.target.value })}
             />
           )}
-
-          <ButtonGroup>
-          <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
-          <Button onClick={handleEditClick}>Edit</Button>
-          {!groups[0]?.status ? (
-            <Button onClick={handleStatusClick}>Mark Done</Button>
-          ) : (
-            <Button onClick={handleStatusClick}>Reactivate</Button>
-          )}
-          </ButtonGroup>
-
+            </div>
+          
+          <div>
+          <Box className='details-table-wrap'>
           <TableContainer>
-          <Table>
+          <Table className='details-table-editing'>
           <TableCaption placement='top'>Group Info</TableCaption>
             <Thead>
               <Tr>
@@ -193,19 +192,41 @@ const DetailsPage = () => {
             </Tbody>
           </Table>
           </TableContainer>
-          <Image 
+          </Box>
+
+          <ButtonGroup>
+          <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
+          <Button onClick={handleEditClick}>Edit</Button>
+          {!groups[0]?.status ? (
+            <Button onClick={handleStatusClick}>Mark Done</Button>
+          ) : (
+            <Button onClick={handleStatusClick}>Reactivate</Button>
+          )}
+          {editing && <Button onClick={handleSaveClick}>Save</Button>}
+          </ButtonGroup>
+            
+          </div>
+          
+          <div>
+          <Image
+          className='portraits'  
           src={groups[0]?.logo} 
           alt="Logo"
           boxSize={'300px'}
           objectFit={'cover'} 
           />
+          
           {editing && (
             <Input
               value={editedValues.logo || ''}
               onChange={(e) => setEditedValues({ ...editedValues, logo: e.target.value })}
             />
           )}
-          <Textarea>
+          </div>
+          </Flex>
+
+          <div className='class-details'>
+          <Text>
             {editing ? (
               <Input
                 value={editedValues.details || ''}
@@ -214,8 +235,9 @@ const DetailsPage = () => {
             ) : (
               groups[0]?.details
             )}
-          </Textarea>
-
+          </Text>
+          </div>
+        
           <RosterControlsAndEssays groupId={groupId.groupId} />
           <Submissions
             badgeId={groups[0].badge_id}
@@ -223,8 +245,11 @@ const DetailsPage = () => {
             userGroupId={userGroupId}
           />
 
-          {editing && <button onClick={handleSaveClick}>Save</button>}
+          
+          
         </Flex>
+        </Container>
+        </Box>
       ) : (
         <p>Nothing</p>
       )}

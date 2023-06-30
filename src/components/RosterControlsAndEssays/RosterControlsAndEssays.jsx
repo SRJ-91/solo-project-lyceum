@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./RosterControlsAndEssays.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
@@ -38,6 +39,7 @@ const RosterControlsAndEssays = ({groupId}) => {
   return (
     <div>
       <Button onClick={openModal}>Add Member</Button>
+      <div className='roster-table'>
       <TableContainer>
       <Table>
         <Thead>
@@ -88,6 +90,7 @@ const RosterControlsAndEssays = ({groupId}) => {
         <Button onClick={handleAddMember}>Enlist</Button>
       </Modal>
       </TableContainer>
+      </div>
     </div>
   );
 };
