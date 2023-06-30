@@ -13,7 +13,6 @@ const RosterControlsAndEssays = ({groupId}) => {
   const allUsers = useSelector((state) => state.allUsers);
   const members = useSelector((state) => state.members);
   console.log('members are', members);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedUser, setSelectedUser] = useState('');
 
