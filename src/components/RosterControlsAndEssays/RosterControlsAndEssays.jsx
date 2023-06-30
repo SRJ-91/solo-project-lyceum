@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "./RosterControlsAndEssays.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDisclosure } from '@chakra-ui/react'
 import {
-  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input, Button, Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton, } 
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input, Button,Select,Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton, } 
   from '@chakra-ui/react'
 
 const RosterControlsAndEssays = ({groupId}) => {
@@ -12,13 +13,9 @@ const RosterControlsAndEssays = ({groupId}) => {
   const allUsers = useSelector((state) => state.allUsers);
   const members = useSelector((state) => state.members);
   console.log('members are', members);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedUser, setSelectedUser] = useState('');
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
 
   const handleAddMember = () => {
     // Dispatch an action to add the selectedUser to the userGroup
@@ -38,7 +35,7 @@ const RosterControlsAndEssays = ({groupId}) => {
 
   return (
     <div>
-      <Button onClick={openModal}>Add Member</Button>
+      <Button onClick={onOpen}>Add Member</Button>
       <div className='roster-table'>
       <TableContainer>
       <Table>
@@ -71,14 +68,13 @@ const RosterControlsAndEssays = ({groupId}) => {
         </Tbody>
       </Table>
 
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        contentLabel="Add Member Modal"
-      >
-        <h2>Add Member</h2>
-
-        <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+      <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+        <ModalContent>
+        <ModalHeader>Add Member to Group</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+        <Select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
           <option value="">Select a user</option>
           {allUsers.map((user) => (
             <option key={user.id}
@@ -86,8 +82,12 @@ const RosterControlsAndEssays = ({groupId}) => {
               {user.username}
             </option>
           ))}
-        </select>
-        <Button onClick={handleAddMember}>Enlist</Button>
+        </Select>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={handleAddMember}>Enlist</Button>
+        </ModalFooter>
+        </ModalContent>
       </Modal>
       </TableContainer>
       </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./PostDetailsPage.css";
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -36,7 +37,7 @@ const PostDetailsPage = () => {
   }
 
   return (
-    <Flex direction={'column'} height={'100vh'}>
+    <Flex className='the-content' direction={'column'} height={'100vh'}>
     <Container my="30px" p="10px">
       <Heading>{selectedPost.title}</Heading>
       {editMode ? (

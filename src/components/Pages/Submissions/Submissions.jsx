@@ -32,15 +32,22 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
 
   return (
     <div className='submission-container'>
-      <Flex justify={'space-between'} marginBottom={"2"}>
+    <Flex justify={'space-between'} marginBottom={"2"}>
       <Heading>Submissions</Heading>
-      <Button onClick={handleCreateSubmission}>Create Submission</Button>
-      </Flex>
-                {showForm && <NewSubmissionPage badgeId={badgeId}
-                 userId={userId}
-                 userGroupId={userGroupId}
-                 onSubmit={() => setShowForm(false)}
-                 />}
+      {showForm ? (
+        <Button onClick={() => setShowForm(false)}>Close</Button>
+      ) : (
+        <Button onClick={handleCreateSubmission}>Create Submission</Button>
+      )}
+    </Flex>
+    {showForm && (
+      <NewSubmissionPage
+        badgeId={badgeId}
+        userId={userId}
+        userGroupId={userGroupId}
+        onSubmit={() => setShowForm(false)}
+      />
+    )}
       <table>
         <thead>
           <tr>
