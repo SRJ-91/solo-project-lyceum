@@ -27,6 +27,7 @@
 .portraits {
     border: 8px solid white;
     padding: 20px;
+    background-size: cover;
 }
 
 .roster-container {

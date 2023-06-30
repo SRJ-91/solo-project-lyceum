@@ -28,7 +28,7 @@ const LaunchPage = () => {
             <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
             <VStack className='button-container'>
             <ButtonGroup>
-            <Button  onClick={() => history.push('/create-group')}>Create Group</Button>
+            <Button onClick={() => history.push('/create-group')}>Create Group</Button>
             <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-users')}>All Users</Button>
             <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-badges')}>Badges</Button>
             <Button variant={'outline'} color ={'white'} onClick={() => history.push('/archive')}>Go to Archive</Button>

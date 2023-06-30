@@ -41,6 +41,7 @@ CREATE TABLE user_groups (
   user_id integer REFERENCES "user"(id),
   reading_group_id integer REFERENCES groups(id),
   role integer
+  active boolean NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE posts (

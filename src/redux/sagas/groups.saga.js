@@ -57,7 +57,11 @@ function* updateStatusSaga(action) { //expects a user id plus the groups table k
   try {
     yield call(axios.put, `/api/groups/handle-status/${action.payload.id}`, action.payload);
     console.log('Successfully changed group status', action.payload);
-    yield put({ type: 'FETCH_ACTIVE' });
+    if (action.payload.status) {
+      yield put({ type: 'FETCH_DONE' });
+    } else {
+      yield put({ type: 'FETCH_ACTIVE' });
+    }
   } catch (error) {
     console.log('Error updating group status', error);
   }

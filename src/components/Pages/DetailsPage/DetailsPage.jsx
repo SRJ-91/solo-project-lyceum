@@ -76,16 +76,13 @@ const DetailsPage = () => {
     // Determine the updated status based on the current status
     const updatedStatus = {
       id: groups[0]?.id,
-      status: !groups[0]?.status, // Toggle the status value
+      status:  !groups[0]?.status, // Toggle the status value
     };
 
     dispatch({ type: 'UPDATE_STATUS', payload: updatedStatus });
-    history.push('/archive')
+    // dispatch({ type: 'FETCH_DONE' });
+    history.push('/archive');
   };
-
-
-
-
   return (
     <>
       {allowRefresh !== undefined ? (

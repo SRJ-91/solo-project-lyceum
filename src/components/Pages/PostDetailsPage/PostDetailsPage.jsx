@@ -37,8 +37,22 @@ const PostDetailsPage = () => {
   }
 
   return (
-    <Flex className='the-content' direction={'column'} height={'100vh'}>
+    <Flex className='the-content' direction={'column'} minH={'100vh'}>
     <Container my="30px" p="10px">
+
+    <ButtonGroup>
+      {editMode ? (
+        <Button onClick={handleSaveClick}>
+          Save
+        </Button>
+      ) : (
+        <Button onClick={() => setEditMode(true)}>Edit</Button>
+      )}
+      <Button onClick={handleDeleteClick}>
+        Delete
+      </Button>
+      </ButtonGroup>
+
       <Heading>{selectedPost.title}</Heading>
       {editMode ? (
         <div>
@@ -55,18 +69,7 @@ const PostDetailsPage = () => {
       ) : (
         <p>{selectedPost.body}</p>
       )}
-      <ButtonGroup>
-      {editMode ? (
-        <Button onClick={handleSaveClick}>
-          Save
-        </Button>
-      ) : (
-        <Button onClick={() => setEditMode(true)}>Edit</Button>
-      )}
-      <Button onClick={handleDeleteClick}>
-        Delete
-      </Button>
-      </ButtonGroup>
+    
       </Container>
       </Flex>
   );
