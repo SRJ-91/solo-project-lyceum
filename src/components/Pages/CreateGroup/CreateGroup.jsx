@@ -3,8 +3,7 @@ import "./CreateGroup.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { format } from 'date-fns';
-import { Container, Flex, Heading, Box, FormControl, FormLabel, Input, FormHelperText, Textarea, Checkbox, Select } from "@chakra-ui/react"
-import { Form } from "react-router-dom";
+import { Button, Container, Flex, Heading, Box, FormControl, FormLabel, Input, FormHelperText, Textarea, Checkbox, Select } from "@chakra-ui/react"
 
 const CreateGroup = () => {
 
@@ -64,7 +63,7 @@ const CreateGroup = () => {
   return (
     <Container className='create-container' centerContent maxW={'xl'}>
       <Heading marginBottom={'15px'}>Create Group</Heading>
-      <button onClick={() => history.push('/launch')}>Go Back</button>
+      <Button onClick={() => history.push('/launch')}>Go Back</Button>
       <form
         onSubmit={handleGroupLaunch}>
 
@@ -156,7 +155,7 @@ const CreateGroup = () => {
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         ></Textarea>
-        <div><button type="submit">Launch Group</button></div>
+        <div><Button type="submit">Launch Group</Button></div>
       </form>
     </Container>
   )

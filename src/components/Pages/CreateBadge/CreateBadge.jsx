@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import {Button, Heading, Input} from '@chakra-ui/react'
+
 
 const CreateBadge = () => {
 
@@ -19,28 +21,35 @@ const CreateBadge = () => {
 
   return (
     <div>
-        <h2>Create a badge</h2>
-        <button onClick={() => history.push('/all-badges')}>Return to Badges</button>
+        <Heading>Create a badge</Heading>
+        <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
         <form onSubmit={addNewBadge}>
-        <input 
+        <Input 
         type="text" 
         placeholder='Badge Name'
         value={newBadge.name}
+        fontWeight={'extrabold'}
         onChange={(event) => setBadge({...newBadge, name: event.target.value})}
         />
-         <input 
+         <Input 
         type="text" 
         placeholder='Badge Url'
         value={newBadge.img}
+        fontWeight={'extrabold'}
         onChange={(event) => setBadge({...newBadge, img: event.target.value})}
         />
-        <input 
+        <Input 
         type="text" 
         placeholder='Badge Description'
         value={newBadge.description}
+        fontWeight={'extrabold'}
         onChange={(event) => setBadge({...newBadge, description: event.target.value})}
         />
-        <input type='submit' value='Add New Badge' />
+        <Input 
+        type='submit' 
+        value='Add New Badge'
+        fontWeight={'extrabold'} 
+        />
         </form>
     </div>
   )

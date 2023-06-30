@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import "./AllBadges.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import axios from 'axios';
+import {Button, ButtonGroup, Heading, Input, Text, Card, CardHeader, CardBody, CardFooter} from '@chakra-ui/react'
 
 const AllBadges = () => {
     const history = useHistory();
@@ -19,11 +20,14 @@ const AllBadges = () => {
     };
 
     console.log('BADGES!',badges);
+
   return (
     <div>
-    <h1>Viewing all Badges</h1>
-    <button onClick={() => history.push('/launch')}>Return to Lyceum</button>
-    <button onClick={() => history.push('/create-badge')}>Create a Badge</button>
+    <Heading>Viewing all Badges</Heading>
+    <ButtonGroup className='the-buttons'>
+    <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
+    <Button onClick={() => history.push('/create-badge')}>Create a Badge</Button>
+    </ButtonGroup>
     {/* Badges mapping */}
     {badges.map((badge) => (
       <div className='badge' key={badge.id} >
@@ -33,7 +37,13 @@ const AllBadges = () => {
         width={'200px'}
         onClick={() => handleBadgeClick(badge.id)}
         />
-        <p>{badge.name}</p>
+        <div className='badge-description'>
+        <Text 
+        color={'black'}>  
+          
+        {badge.name}
+        </Text>
+        </div>
       </div>
     ))}
   </div>

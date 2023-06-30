@@ -1,6 +1,8 @@
 import React, { useState} from 'react';
+import "./BadgeDetails.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import {Button, Heading, Input, Text} from '@chakra-ui/react'
 
 const BadgeDetailsPage = () => {
     //Hooks
@@ -49,9 +51,9 @@ const BadgeDetailsPage = () => {
 
   return (
     <div>
-        <button onClick={() => history.push('/all-badges')}>Return to Badges</button>
+        <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
       {/* Render badge details */}
-    <h2>{selectedBadge.name}</h2>
+    <Heading>{selectedBadge.name}</Heading>
     {!editing && (
       <img
         src={selectedBadge.img}
@@ -60,27 +62,30 @@ const BadgeDetailsPage = () => {
       />
     )}
     {editing && (
-      <input
+      <Input
         value={editedImg}
         onChange={(e) => setEditedImg(e.target.value)}
       />
     )}
-    <p>{selectedBadge.description}</p>
 
-      {/* Render edit and delete buttons */}
+    <div className='badge-details'>
+    <Text>{selectedBadge.description}</Text>
+    </div> 
+
+      {/* Render edit and delete Buttons */}
       {!editing && (
         <div>
-          <button onClick={handleEditClick}>Edit</button>
-          <button onClick={handleDeleteClick}>Delete</button>
+          <Button onClick={handleEditClick}>Edit</Button>
+          <Button onClick={handleDeleteClick}>Delete</Button>
         </div>
       )}
 
       {/* Render input fields for editing */}
       {editing && (
         <div>
-          <input value={editedName} onChange={(e) => setEditedName(e.target.value)} />
-          <textarea value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)}></textarea>
-          <button onClick={handleSaveClick}>Save</button>
+          <Input value={editedName} onChange={(e) => setEditedName(e.target.value)} />
+          <Text value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)}></Text>
+          <Button onClick={handleSaveClick}>Save</Button>
         </div>
       )}
     </div>

@@ -117,7 +117,7 @@ const DetailsPage = () => {
           <TableCaption placement='top'>Group Info</TableCaption>
             <Thead>
               <Tr>
-                <Th>
+                <Td>
                   {editing ? (
                     <Input
                       value={editedValues.team_name || ''}
@@ -126,7 +126,7 @@ const DetailsPage = () => {
                   ) : (
                     groups[0]?.team_name
                   )}
-                </Th>
+                </Td>
               </Tr>
             </Thead>
             <Tbody>

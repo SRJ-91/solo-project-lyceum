@@ -21,10 +21,12 @@ const ArchivePage = () => {
       };
 
   return (
+<Box className='archive-dashboard'>
+<Container maxW={'1200px'}>
     <Flex direction={'column'}>
-      <Box className='archive-dashboard'>
-    <Heading textAlign={'center'} marginBottom={'15px'} color='black'>Lyceum Archive</Heading>
-       <VStack>
+      
+    <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Lyceum Archive</Heading>
+       <VStack className='button-container'>
         <ButtonGroup>
         <Button onClick={() => history.push('/all-users')}>All Users</Button>
         <Button onClick={() => history.push('/all-badges')}>Badges</Button>
@@ -32,9 +34,10 @@ const ArchivePage = () => {
         </ButtonGroup>
         </VStack>
 
-     <Box className='Archive-Table-Box'>  
+    <Box className='Archive-Table-Box'>
+    <TableContainer className='The-Archive-Table'>  
     <Table variant="simple" colorScheme='whiteAlpha'>
-      <TableCaption placement='top'>All Archived Reading Groups</TableCaption>
+    <TableCaption placement='top'>All Archived Reading Groups</TableCaption>
       <Thead>
         <Tr>
           <Th>Status</Th>
@@ -64,9 +67,11 @@ const ArchivePage = () => {
         ))}
       </Tbody>
     </Table>
+    </TableContainer>
     </Box>      
-    </Box> 
   </Flex>
+  </Container>
+  </Box> 
   )
 }
 
