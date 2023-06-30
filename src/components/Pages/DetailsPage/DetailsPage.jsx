@@ -89,6 +89,7 @@ const DetailsPage = () => {
   return (
     <>
       {allowRefresh !== undefined ? (
+        <>
         <Box className='details-art'>
           <Container maxW={'1200px'}>
         <Flex direction={'column'}>
@@ -237,19 +238,23 @@ const DetailsPage = () => {
             )}
           </Text>
           </div>
-        
+          </Flex>
+        </Container>
+        </Box>
+        <div className='roster-container'>
+        <Container maxW={'1200px'}>
           <RosterControlsAndEssays groupId={groupId.groupId} />
           <Submissions
             badgeId={groups[0].badge_id}
             userId={user.id}
             userGroupId={userGroupId}
           />
-
+          </Container>
+          </div>
+        </>
           
           
-        </Flex>
-        </Container>
-        </Box>
+        
       ) : (
         <p>Nothing</p>
       )}

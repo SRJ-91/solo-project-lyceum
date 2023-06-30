@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import {
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image, Text, Heading,Container,Input,Button,ButtonGroup,Flex,Textarea,Box } 
+  from '@chakra-ui/react'
 
 const NewSubmissionPage = ({ badgeId, userId, userGroupId, onSubmit }) => {
   const members = useSelector((store) => store.members);
@@ -51,20 +54,22 @@ const NewSubmissionPage = ({ badgeId, userId, userGroupId, onSubmit }) => {
   };
 
   return (
-    <div>
-      <h1>New Submission</h1>
+    <Flex direction={'column'} marginY={4}>
+      <Heading size={'md'} marginBottom={'3'}>New Submission</Heading>
       <form>
         <div>
           <label htmlFor="title">Title:</label>
-          <input type="text" id="title" value={title} onChange={handleTitleChange} />
+          <Input type="text" id="title" value={title} onChange={handleTitleChange} />
         </div>
         <div>
           <label htmlFor="body">Body:</label>
-          <textarea id="body" rows="5" value={body} onChange={handleBodyChange} />
+          <Textarea id="body" rows="5" value={body} onChange={handleBodyChange} />
         </div>
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <div>
+        <Button type="button" marginTop={'3'} onClick={handleSubmit}>Submit</Button>
+        </div>
       </form>
-    </div>
+    </Flex>
   );
 };
 

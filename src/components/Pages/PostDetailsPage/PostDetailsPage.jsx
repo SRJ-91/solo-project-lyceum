@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Heading, Text, Container } from '@chakra-ui/react'
+import { Heading, Text, Container, Flex, Button, ButtonGroup, Input } from '@chakra-ui/react'
 
 const PostDetailsPage = () => {
 
@@ -36,34 +36,38 @@ const PostDetailsPage = () => {
   }
 
   return (
+    <Flex direction={'column'} height={'100vh'}>
     <Container my="30px" p="10px">
       <Heading>{selectedPost.title}</Heading>
       {editMode ? (
         <div>
-          <input
+          <Input
             type="text"
             value={editedPost.title}
             onChange={(e) => setEditedPost({ ...editedPost, title: e.target.value })}
           />
-          <Text marginLeft="30px"> 
+          <Input 
             value={editedPost.body}
             onChange={(e) => setEditedPost({ ...editedPost, body: e.target.value })}
-          </Text>
+          />
         </div>
       ) : (
         <p>{selectedPost.body}</p>
       )}
+      <ButtonGroup>
       {editMode ? (
-        <button onClick={handleSaveClick}>
+        <Button onClick={handleSaveClick}>
           Save
-        </button>
+        </Button>
       ) : (
-        <button onClick={() => setEditMode(true)}>Edit</button>
+        <Button onClick={() => setEditMode(true)}>Edit</Button>
       )}
-      <button onClick={handleDeleteClick}>
+      <Button onClick={handleDeleteClick}>
         Delete
-      </button>
+      </Button>
+      </ButtonGroup>
       </Container>
+      </Flex>
   );
 };
 

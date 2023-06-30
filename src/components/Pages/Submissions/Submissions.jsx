@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import "./Submissions.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import NewSubmissionPage from '../NewSubmissionPage/NewSubmissionPage';
+import {
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image, Text, Heading,Container,Input,Button,ButtonGroup,Flex,Textarea,Box } 
+  from '@chakra-ui/react'
 
 const Submissions = ({badgeId, userId, userGroupId}) => {
   const dispatch = useDispatch();
@@ -27,19 +31,21 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
   };
 
   return (
-    <div>
-      <button onClick={handleCreateSubmission}>Create Submission</button>
-      {showForm && <NewSubmissionPage badgeId={badgeId}
+    <div className='submission-container'>
+      <Flex justify={'space-between'} marginBottom={"2"}>
+      <Heading>Submissions</Heading>
+      <Button onClick={handleCreateSubmission}>Create Submission</Button>
+      </Flex>
+                {showForm && <NewSubmissionPage badgeId={badgeId}
                  userId={userId}
                  userGroupId={userGroupId}
                  onSubmit={() => setShowForm(false)}
                  />}
-
       <table>
         <thead>
           <tr>
             {/* <th>Avatar</th> */}
-            <th>Title</th>
+            {/* <th>Title</th> */}
             {/* <th>Status</th> */}
           </tr>
         </thead>
