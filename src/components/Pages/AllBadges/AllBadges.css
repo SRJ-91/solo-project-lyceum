@@ -2,9 +2,15 @@
     margin-bottom: 30px;
 }
 
-.badge-description {
-    background-color: white;
-    width: 16%;
+.badge-card {
+ background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+}
+
+.badge-picture {
+    border-radius: 50%;
+}
+
+.badge-name {
+    background-color: hsla(55, 28%, 92%, 0.70);
     font-weight: bold;
-    margin-bottom: 20px;
 }
