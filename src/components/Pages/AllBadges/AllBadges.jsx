@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./AllBadges.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import {Button, SimpleGrid, Img, ButtonGroup, Heading, Input, Text, Card, CardHeader, CardBody, CardFooter} from '@chakra-ui/react'
+import {Button, Box, SimpleGrid, Img, ButtonGroup, Heading, Input, Text, Card, CardHeader, CardBody, CardFooter} from '@chakra-ui/react'
 
 const AllBadges = () => {
     const history = useHistory();
@@ -22,14 +22,14 @@ const AllBadges = () => {
     console.log('BADGES!',badges);
 
   return (
-    <div>
-    <Heading>Viewing all Badges</Heading>
+    <Box className='badge-page'>
+    <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>Viewing all Badges</Heading>
     <ButtonGroup className='the-buttons'>
     <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
     <Button onClick={() => history.push('/create-badge')}>Create a Badge</Button>
     </ButtonGroup>
     {/* Badges mapping */}
-    // <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
     {badges.map((badge) => (
       
       <Card variant={'elevated'} maxW={'md'} align={'center'} className='badge-card' key={badge.id} >
@@ -42,7 +42,7 @@ const AllBadges = () => {
         onClick={() => handleBadgeClick(badge.id)}
         />
         </CardBody>
-        <Text className='badge-name'>
+        <Text className='badge-name' decoration='whitesmoke'>
         <CardFooter
         color={'black'}>  
         {badge.name}
@@ -51,7 +51,7 @@ const AllBadges = () => {
       </Card>
     ))}
     </SimpleGrid>
-  </div>
+  </Box>
 );
 };
 

@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import "./AllUsers.css";
 import { useSelector, useDispatch } from 'react-redux';
+import { format } from 'date-fns';
+import { Avatar, AvatarBadge, AvatarGroup, Heading, Box, Img, VStack, Button, ButtonGroup, Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer } from '@chakra-ui/react'
 
 const AllUsers = () => {
     const dispatch = useDispatch();
@@ -13,31 +16,34 @@ const AllUsers = () => {
       }, []);
 
     return (
-        <div>
-            <h1>Showing all Users</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Avatar</th>
-                <th>Region</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Created At</th>
-              </tr>
-            </thead>
-            <tbody>
+        <Box className='user-page'>
+            <Heading color={'white'} textAlign={'center'} marginBottom={'30px'}>All Members</Heading>
+            <Box className='user-table'>
+          <Table variant="simple" colorScheme='whiteAlpha'>
+            <Thead>
+              <Tr>
+                <Th>Avatar</Th>
+                <Th>Region</Th>
+                <Th>Username</Th>
+                <Th>Role</Th>
+                <Th>Date Joined</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
             {store && store.map((user) => (
-                <tr key={user.id}>
-                  <td><img src={user.avatar} alt="Avatar" /></td>
-                  <td>{user.region}</td>
-                  <td>{user.username}</td>
-                  <td>{user.role}</td>
-                  <td>{user.created_at}</td>
-                </tr>
+                <Tr key={user.id}>
+                  <Td><Img src={user.avatar} alt="Avatar" /></Td>
+                  <Td>{user.region}</Td>
+                  <Td>{user.username}</Td>
+                  <Td>{user.role}</Td>
+                  <Td>{format(new Date(user.created_at), 'MM/dd/yyyy')}</Td>
+                </Tr>
               ))}
-            </tbody>
-          </table>
-        </div>
+              {/* <Td>{format(new Date(group.start_date), 'MM/dd/yyyy')}</Td> */}
+            </Tbody>
+          </Table>
+          </Box>
+        </Box>
       );
 }
 
