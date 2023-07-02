@@ -74,7 +74,7 @@ function RegisterForm() {
 <Input
   type="text"
   id="region"
-  placeholder="Enter region like so: Continent-Timezone"
+  placeholder="Continent-Timezone"
   value={region}
   onChange={(event) => setRegion(event.target.value)}
 />
