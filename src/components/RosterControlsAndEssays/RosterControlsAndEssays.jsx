@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDisclosure } from '@chakra-ui/react'
 import {
-  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input, Button,Select,Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton, } 
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image,Input, Avatar, Button,Select,Modal,ModalOverlay,ModalContent,ModalHeader,ModalFooter,ModalBody,ModalCloseButton, } 
   from '@chakra-ui/react'
 
 const RosterControlsAndEssays = ({groupId}) => {
@@ -51,7 +51,7 @@ const RosterControlsAndEssays = ({groupId}) => {
           {members.map((member) => (
             <Tr key={member.id}>
               <Td>
-                <img src={member.avatar} alt="Avatar" />
+                <Avatar src={member.avatar} alt="Avatar" />
               </Td>
               <Td>{member.region}</Td>
               <Td>{member.username}</Td>

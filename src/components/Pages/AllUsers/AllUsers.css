@@ -11,7 +11,23 @@
 }
 
 .user-table {
+color: white;
+font-weight: bold;
+padding: 30px 10px;
+margin: 100px 0;
+font-size:22px;
+background-color: rgba(0,0,0,0.7);
+}
+
+
+/* .user-table {
     background-color: hsla(55, 28%, 92%, 0.50);
     font-weight: bold;
     padding: 10px;
 }
+
+color: white;
+padding: 30px 10px;
+margin: 100px 0;
+font-size:22px;
+background-color: rgba(0,0,0,0.7); */

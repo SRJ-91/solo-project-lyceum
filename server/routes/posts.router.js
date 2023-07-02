@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// GET Request to fetch all posts
+// GET Request to fetch all posts - JOIN "users" AS "u" ON "p"."user_id" = "u"."id"
 router.get('/fetch/:groupId', (req, res) => {
   const groupId = req.params.groupId;
  const query = `SELECT p.id AS id, p.title AS title, p.body AS body, p.user_id AS user_id, p.badge_id AS badge_id, p.users_groups_id AS users_groups_id, ug.reading_group_id AS reading_group_id, ug.role AS role FROM "posts" AS "p"
  JOIN "user_groups" AS "ug" on "p"."users_groups_id"="ug"."id"
+ 
  WHERE "ug"."reading_group_id"=$1
  ORDER by "p"."id";`;
   console.log(req.body);

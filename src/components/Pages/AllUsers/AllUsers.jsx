@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import "./AllUsers.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { format } from 'date-fns';
-import { Avatar, AvatarBadge, AvatarGroup, Heading, Box, Img, VStack, Button, ButtonGroup, Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer } from '@chakra-ui/react'
+import { Avatar, AvatarBadge, AvatarGroup, Container, Heading, Box, Img, VStack, Button, ButtonGroup, Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer } from '@chakra-ui/react'
 
 const AllUsers = () => {
     const dispatch = useDispatch();
@@ -17,9 +17,10 @@ const AllUsers = () => {
 
     return (
         <Box className='user-page'>
-            <Heading color={'white'} textAlign={'center'} marginBottom={'30px'}>All Members</Heading>
+          <Container maxW={'1200px'}>
+            <Heading color={'white'} textAlign={'center'} marginBottom={'20px'}>All Members</Heading>
             <Box className='user-table'>
-          <Table variant="simple" colorScheme='whiteAlpha'>
+          <Table variant="simple" colorScheme='whiteAlpha' overflowX={'auto'} overflowY={'scroll'}>
             <Thead>
               <Tr>
                 <Th>Avatar</Th>
@@ -32,7 +33,10 @@ const AllUsers = () => {
             <Tbody>
             {store && store.map((user) => (
                 <Tr key={user.id}>
-                  <Td><Img src={user.avatar} alt="Avatar" /></Td>
+                  <Td><Avatar 
+                  src={user.avatar} 
+                  alt="Avatar" 
+                  /></Td>
                   <Td>{user.region}</Td>
                   <Td>{user.username}</Td>
                   <Td>{user.role}</Td>
@@ -43,6 +47,7 @@ const AllUsers = () => {
             </Tbody>
           </Table>
           </Box>
+          </Container>
         </Box>
       );
 }

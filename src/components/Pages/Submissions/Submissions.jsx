@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import NewSubmissionPage from '../NewSubmissionPage/NewSubmissionPage';
 import {
-  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image, Text, Heading,Container,Input,Button,ButtonGroup,Flex,Textarea,Box } 
+  Table,Thead,Tbody,Tr,Th,Td,TableCaption,TableContainer,Image, Avatar, Text, Heading,Container,Input,Button,ButtonGroup,Flex,Textarea,Box } 
   from '@chakra-ui/react'
 
 const Submissions = ({badgeId, userId, userGroupId}) => {
@@ -48,29 +48,29 @@ const Submissions = ({badgeId, userId, userGroupId}) => {
         onSubmit={() => setShowForm(false)}
       />
     )}
-      <table>
-        <thead>
-          <tr>
+      <Table>
+        <Thead>
+          <Tr>
             {/* <th>Avatar</th> */}
             {/* <th>Title</th> */}
             {/* <th>Status</th> */}
-          </tr>
-        </thead>
-        <tbody>
+          </Tr>
+        </Thead>
+        <Tbody>
           {posts.map((post) => (
-            <tr key={post.id}
+            <Tr key={post.id}
             onClick={() => handleRowClick(post.id)}
             style={{ cursor: 'pointer' }}
           >
-              {/* <td>
-                <img src={post.user.avatar} alt="Avatar" />
-              </td> */}
-              <td>{post.title}</td>
-              {/* <td>{post.status}</td> */}
-            </tr>
+              <Td>
+                {/* <Avatar src={post.avatar} alt="Avatar" /> */}
+              </Td>
+              <Td>{post.title}</Td>
+              {/* <Td>{post.status}</Td> */}
+            </Tr>
           ))}
-        </tbody>
-      </table>
+        </Tbody>
+      </Table>
     </div>
   );
 };
