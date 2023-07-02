@@ -31,24 +31,31 @@ const PostDetailsPage = () => {
     setEditMode(false);
   }
 
-  function handleDeleteClick () {
-    dispatch({ type: 'DELETE_POST', payload: {id:selectedPost.id, groupId: selectedPost.reading_group_id }})
-    history.goBack();
+  function handleDeleteClick() {
+    // Display a confirmation pop-up alert
+    const confirmed = window.confirm('Are you sure you want to delete this post?');
+  
+    // Proceed with deleting the post if the user confirms
+    if (confirmed) {
+      dispatch({ type: 'DELETE_POST', payload: { id: selectedPost.id, groupId: selectedPost.reading_group_id } });
+      history.goBack();
+    }
   }
+  
 
   return (
     <Flex className='the-content' direction={'column'} minH={'100vh'}>
     <Container my="30px" p="10px">
 
-    <ButtonGroup>
+    <ButtonGroup spacing={'15px'}>
       {editMode ? (
         <Button onClick={handleSaveClick}>
           Save
         </Button>
       ) : (
-        <Button onClick={() => setEditMode(true)}>Edit</Button>
+        <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => setEditMode(true)}>Edit</Button>
       )}
-      <Button onClick={handleDeleteClick}>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={handleDeleteClick}>
         Delete
       </Button>
       </ButtonGroup>

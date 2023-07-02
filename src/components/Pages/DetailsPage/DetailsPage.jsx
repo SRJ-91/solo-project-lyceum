@@ -74,7 +74,7 @@ const DetailsPage = () => {
 
   const handleStatusClick = () => {
     // Display a confirmation pop-up alert
-    const confirmed = window.confirm('Are you sure you want to update the status?');
+    const confirmed = window.confirm('Are you sure you want to change this reading groups status?');
   
     // Proceed with updating the status if the user confirms
     if (confirmed) {
@@ -232,10 +232,10 @@ const DetailsPage = () => {
           </Box>
 
           <ButtonGroup>
-          <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
-          <Button onClick={handleEditClick}>Edit</Button>
+          <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>Return to Lyceum</Button>
+          <Button variant={'outline'} color={'white'} _hover={blur} onClick={handleEditClick}>Edit</Button>
           {!groups[0]?.status ? (
-            <Button onClick={handleStatusClick}>Mark Done</Button>
+            <Button onClick={handleStatusClick}>End Group</Button>
           ) : (
             <Button onClick={handleStatusClick}>Reactivate</Button>
           )}

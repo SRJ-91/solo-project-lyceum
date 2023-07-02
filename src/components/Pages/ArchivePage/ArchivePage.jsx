@@ -27,10 +27,10 @@ const ArchivePage = () => {
 
           <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Lyceum Archive</Heading>
           <VStack className='button-container'>
-            <ButtonGroup>
-              <Button onClick={() => history.push('/all-users')}>All Users</Button>
-              <Button onClick={() => history.push('/all-badges')}>Badges</Button>
-              <Button onClick={() => history.push('/launch')}>Go to Active</Button>
+            <ButtonGroup spacing={'15px'}>
+              <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-users')}>All Users</Button>
+              <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-badges')}>Badges</Button>
+              <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>Go to Lyceum</Button>
             </ButtonGroup>
           </VStack>
 

@@ -23,10 +23,11 @@ const AllBadges = () => {
 
   return (
     <Box className='badge-page'>
-    <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>Viewing all Badges</Heading>
-    <ButtonGroup className='the-buttons'>
-    <Button onClick={() => history.push('/launch')}>Return to Lyceum</Button>
+    <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>Lyceum Badges</Heading>
+    <ButtonGroup spacing={'15px'} className='the-buttons'>
     <Button onClick={() => history.push('/create-badge')}>Create a Badge</Button>
+    <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>Go to Lyceum</Button>
+    <Button variant={'outline'} color ={'white'} _hover={blur} onClick={() => history.push('/archive')}>Go to Archive</Button>
     </ButtonGroup>
     {/* Badges mapping */}
     <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>

@@ -26,6 +26,7 @@ const RosterControlsAndEssays = ({groupId}) => {
   const handleKickMember = () => {
     dispatch({ type: 'REMOVE_USER_FROM_GROUP', payload: member.id })
   }
+  
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_USERS'});
@@ -34,7 +35,7 @@ const RosterControlsAndEssays = ({groupId}) => {
 
   return (
     <div>
-      <Button onClick={onOpen}>Add Member</Button>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={onOpen}>Add Member</Button>
       <div className='roster-table'>
       <TableContainer>
       <Table>
@@ -83,9 +84,8 @@ const RosterControlsAndEssays = ({groupId}) => {
           ))}
         </Select>
         </ModalBody>
-        <ModalFooter>
-          <Button onClick={handleAddMember}>Enlist</Button>
-        </ModalFooter>
+          <Button colorScheme='orange' onClick={handleAddMember}>Enlist</Button>
+          
         </ModalContent>
       </Modal>
       </TableContainer>

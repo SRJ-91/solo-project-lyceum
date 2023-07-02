@@ -26,12 +26,13 @@ const LaunchPage = () => {
           <Flex direction={'column'}>
             
             <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
+
             <VStack className='button-container'>
-            <ButtonGroup>
+            <ButtonGroup spacing={'15px'}>
             <Button onClick={() => history.push('/create-group')}>Create Group</Button>
-            <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-users')}>All Users</Button>
-            <Button variant={'outline'} color={'white'} onClick={() => history.push('/all-badges')}>Badges</Button>
-            <Button variant={'outline'} color ={'white'} onClick={() => history.push('/archive')}>Go to Archive</Button>
+            <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-users')}>All Users</Button>
+            <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-badges')}>Badges</Button>
+            <Button variant={'outline'} color ={'white'} _hover={blur} onClick={() => history.push('/archive')}>Go to Archive</Button>
             </ButtonGroup>
             </VStack>
            
