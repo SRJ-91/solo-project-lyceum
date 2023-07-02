@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Container, Flex, Heading, Box, FormControl, FormLabel, Input, FormHelperText, Textarea, Checkbox, Select } from "@chakra-ui/react"
+
 
 function RegisterForm() {
   //State
@@ -39,7 +41,7 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <Heading>Register User</Heading>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -48,7 +50,7 @@ function RegisterForm() {
       <div>
         <label htmlFor="username">
           Username:
-          <input
+          <Input
             type="text"
             name="username"
             value={username}
@@ -60,7 +62,7 @@ function RegisterForm() {
       <div>
         <label htmlFor="password">
           Password:
-          <input
+          <Input
             type="password"
             name="password"
             value={password}
@@ -69,16 +71,16 @@ function RegisterForm() {
           />
         </label>
         <label htmlFor="region">Region:</label>
-<input
+<Input
   type="text"
   id="region"
-  placeholder="Enter region"
+  placeholder="Enter region like so: Continent-Timezone"
   value={region}
   onChange={(event) => setRegion(event.target.value)}
 />
 
 <label htmlFor="avatar">Avatar:</label>
-<input
+<Input
   type="text"
   id="avatar"
   placeholder="Enter avatar URL"
@@ -86,17 +88,17 @@ function RegisterForm() {
   onChange={(event) => setAvatar(event.target.value)}
 />
 
-<label htmlFor="role">Role:</label>
-<input
+{/* <label htmlFor="role">Role:</label>
+<Input
   type="text"
   id="role"
   placeholder="Enter role"
   value={role}
   onChange={(event) => setRole(event.target.value)}
-/>
+/> */}
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Input className="btn" type="submit" name="submit" value="Register" />
       </div>
     </form>
   );

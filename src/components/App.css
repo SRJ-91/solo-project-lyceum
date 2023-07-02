@@ -29,11 +29,13 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  /* border-color: #014041; */
+  border-color: black;
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #00acb0;
-  color: #f8f8f8;
+  /* color: #f8f8f8; */
+  color: darkblue;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -123,4 +125,6 @@ input, select {
 
 .app-background {
   background-image: url(/./public/images/greek-background.jpeg);
+  /* background-size: cover; */
+  height: 100%;
 }

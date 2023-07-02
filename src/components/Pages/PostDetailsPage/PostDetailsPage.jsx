@@ -3,7 +3,7 @@ import "./PostDetailsPage.css";
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Heading, Text, Container, Flex, Button, ButtonGroup, Input } from '@chakra-ui/react'
+import { Heading, Text, Container, Flex, Button, ButtonGroup, Input, Textarea } from '@chakra-ui/react'
 
 const PostDetailsPage = () => {
 
@@ -53,7 +53,7 @@ const PostDetailsPage = () => {
       </Button>
       </ButtonGroup>
 
-      <Heading>{selectedPost.title}</Heading>
+      <Heading textAlign={'center'} marginBottom={'30px'}>{selectedPost.title}</Heading>
       {editMode ? (
         <div>
           <Input
@@ -61,13 +61,14 @@ const PostDetailsPage = () => {
             value={editedPost.title}
             onChange={(e) => setEditedPost({ ...editedPost, title: e.target.value })}
           />
-          <Input 
+          <Textarea 
             value={editedPost.body}
+            rows={'40'}
             onChange={(e) => setEditedPost({ ...editedPost, body: e.target.value })}
           />
         </div>
       ) : (
-        <p>{selectedPost.body}</p>
+        <Textarea isReadOnly='true' rows={'40'}>{selectedPost.body}</Textarea>
       )}
     
       </Container>

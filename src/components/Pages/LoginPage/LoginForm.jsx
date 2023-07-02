@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Button, Container, Flex, Heading, Box, FormControl, FormLabel, Input, FormHelperText, Textarea, Checkbox, Select } from "@chakra-ui/react"
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -26,7 +28,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <Heading>Login</Heading>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -35,7 +37,7 @@ function LoginForm() {
       <div>
         <label htmlFor="username">
           Username:
-          <input
+          <Input
             type="text"
             name="username"
             required
@@ -47,7 +49,7 @@ function LoginForm() {
       <div>
         <label htmlFor="password">
           Password:
-          <input
+          <Input
             type="password"
             name="password"
             required
@@ -57,7 +59,7 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Input className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>
   );

@@ -43,8 +43,8 @@ const RosterControlsAndEssays = ({groupId}) => {
             <Th>Avatar</Th>
             <Th>Region</Th>
             <Th>Username</Th>
-            <Th>Role</Th>
-            <Th>Actions</Th>
+            {/* <Th>Role</Th>
+            <Th>Actions</Th> */}
           </Tr>
         </Thead>
         <Tbody>
@@ -55,11 +55,11 @@ const RosterControlsAndEssays = ({groupId}) => {
               </Td>
               <Td>{member.region}</Td>
               <Td>{member.username}</Td>
-              <Td>{member.role}</Td>
+              {/* <Td>{member.role}</Td> */}
               <Td>
                 {/* <Button>Edit Role</Button> */}
                 <Button onClick={() => dispatch({ type: 'REMOVE_USER_FROM_GROUP', payload: {memberId:member.id, groupId }}) }>
-                    Kick
+                    Remove
                 </Button>
               </Td>
             </Tr>

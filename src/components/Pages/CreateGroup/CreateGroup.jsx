@@ -61,6 +61,7 @@ const CreateGroup = () => {
   // onSubmit={handleGroupLaunch}>
 
   return (
+    <Box className='create-page'>
     <Container className='create-container' centerContent maxW={'xl'}>
       <Heading marginBottom={'15px'}>Create Group</Heading>
       <Button onClick={() => history.push('/launch')}>Go Back</Button>
@@ -158,6 +159,7 @@ const CreateGroup = () => {
         <div><Button type="submit">Launch Group</Button></div>
       </form>
     </Container>
+    </Box>
   )
 }
 

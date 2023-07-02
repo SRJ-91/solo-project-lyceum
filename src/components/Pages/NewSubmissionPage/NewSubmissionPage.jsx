@@ -63,7 +63,7 @@ const NewSubmissionPage = ({ badgeId, userId, userGroupId, onSubmit }) => {
         </div>
         <div>
           <label htmlFor="body">Body:</label>
-          <Textarea id="body" rows="5" value={body} onChange={handleBodyChange} />
+          <Textarea id="body" rows="10" value={body} onChange={handleBodyChange} />
         </div>
         <div>
         <Button type="button" marginTop={'3'} onClick={handleSubmit}>Submit</Button>
