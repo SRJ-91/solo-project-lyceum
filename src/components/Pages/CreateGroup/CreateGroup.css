@@ -10,7 +10,8 @@
 }
 
 .create-container {
-    color: white;
+    background-color: hsla(55, 28%, 92%, 0.70);
+    color: black;
     padding: 30px 10px;
     margin: 100px 0;
     font-size:22px;

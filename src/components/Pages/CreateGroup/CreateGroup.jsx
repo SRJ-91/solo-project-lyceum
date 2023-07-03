@@ -98,7 +98,7 @@ const CreateGroup = () => {
           id="cover"
           marginBottom={'10px'}
           placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'white' }}
+          _placeholder={{ opacity: 1, color: 'black' }}
           value={cover}
           onChange={(e) => setCover(e.target.value)}
           isRequired={true}
@@ -119,7 +119,7 @@ const CreateGroup = () => {
           id="logo"
           marginBottom={'10px'}
           placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'white' }}
+          _placeholder={{ opacity: 1, color: 'black' }}
           value={logo}
           onChange={(e) => setLogo(e.target.value)}
         />
@@ -166,7 +166,7 @@ const CreateGroup = () => {
           id="region"
           marginBottom={'10px'}
           placeholder='Continent-Timezone'
-          _placeholder={{ opacity: 1, color: 'white' }}
+          _placeholder={{ opacity: 1, color: 'black' }}
           value={region}
           onChange={(e) => setRegion(e.target.value)}
           isRequired={true}
@@ -178,11 +178,11 @@ const CreateGroup = () => {
           value={details}
           rows={'8'}
           placeholder='Put the welcome message and/or first assignment here'
-          _placeholder={{ opacity: 1, color: 'white' }}
+          _placeholder={{ opacity: 1, color: 'black' }}
           onChange={(e) => setDetails(e.target.value)}
           isRequired={true}
         ></Textarea>
-        <div><Button type="submit" marginLeft={'40px'} marginTop={'15px'}> Launch Group</Button></div>
+        <div><Button type="submit" marginLeft={'90px'} marginTop={'15px'}> Launch Group</Button></div>
       </form>
     </Container>
     </Box>
