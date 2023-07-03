@@ -34,9 +34,10 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
-      <div>
+      <div className='input-borders'>
+        <FormControl>
         <label htmlFor="username">
-          Username:
+          <FormLabel> Username:</FormLabel>
           <Input
             type="text"
             name="username"
@@ -45,10 +46,12 @@ function LoginForm() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
+        </FormControl>
       </div>
-      <div>
+      <div className='input-borders'>
+        <FormControl>
         <label htmlFor="password">
-          Password:
+          <FormLabel>Password:</FormLabel>
           <Input
             type="password"
             name="password"
@@ -57,9 +60,10 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
+        </FormControl>
       </div>
       <div>
-        <Input className="btn" type="submit" name="submit" value="Log In" />
+        <Input className="btn" type="submit" name="submit" value="Log In"/>
       </div>
     </form>
   );

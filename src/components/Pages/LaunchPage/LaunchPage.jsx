@@ -42,7 +42,7 @@ const LaunchPage = () => {
           <TableCaption placement='top'>All Active Reading Groups</TableCaption>
             <Thead>
               <Tr>
-                <Th>Status</Th>
+                {/* <Th>Status</Th> */}
                 <Th>Region</Th>
                 <Th>Book Name</Th>
                 <Th>Team Name</Th>
@@ -58,11 +58,11 @@ const LaunchPage = () => {
                 onClick={() => handleRowClick(group.id)}
                 style={{ cursor: 'pointer' }}
               >
-               <Td>{group.status ? 'DONE' : 'ACTIVE'}</Td>
+               {/* <Td>{group.status ? 'DONE' : 'ACTIVE'}</Td> */}
                <Td>{group.region}</Td>
                <Td>{group.book_name}</Td>
                <Td>{group.team_name}</Td>
-               <Td>{group.cohort}</Td>
+               <Td textAlign={'center'}>{group.cohort}</Td>
                <Td>{format(new Date(group.start_date), 'MM/dd/yyyy')}</Td>
                <Td>{format(new Date(group.end_date), 'MM/dd/yyyy')}</Td>
              </Tr>

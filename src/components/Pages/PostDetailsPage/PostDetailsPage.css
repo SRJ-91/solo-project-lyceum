@@ -1,7 +1,18 @@
+.style-container {
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/./public/images/Ancient_greek_text.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
 .the-content {
     color: white;
     padding: 30px 10px;
     margin: 100px 0;
     font-size:22px;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.1);
 }

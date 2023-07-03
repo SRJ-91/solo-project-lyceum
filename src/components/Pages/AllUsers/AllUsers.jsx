@@ -26,7 +26,7 @@ const AllUsers = () => {
                 <Th>Avatar</Th>
                 <Th>Region</Th>
                 <Th>Username</Th>
-                <Th>Role</Th>
+                {/* <Th>Role</Th> */}
                 <Th>Date Joined</Th>
               </Tr>
             </Thead>
@@ -39,7 +39,7 @@ const AllUsers = () => {
                   /></Td>
                   <Td>{user.region}</Td>
                   <Td>{user.username}</Td>
-                  <Td>{user.role}</Td>
+                  {/* <Td>{user.role}</Td> */}
                   <Td>{format(new Date(user.created_at), 'MM/dd/yyyy')}</Td>
                 </Tr>
               ))}

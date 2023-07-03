@@ -15,11 +15,12 @@ function RegisterPage() {
         <Button
           type="button"
           className="btn btn_asLink"
+          marginBottom={'20px'}
           onClick={() => {
             history.push('/login');
           }}
         >
-          Login
+          Go to Login
         </Button>
       </center>
     </div>

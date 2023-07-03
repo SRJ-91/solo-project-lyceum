@@ -47,7 +47,7 @@ function RegisterForm() {
           {errors.registrationMessage}
         </h3>
       )}
-      <div>
+      <div className='input-borders'>
         <label htmlFor="username">
           Username:
           <Input
@@ -59,7 +59,7 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div>
+      <div className='input-borders'> 
         <label htmlFor="password">
           Password:
           <Input

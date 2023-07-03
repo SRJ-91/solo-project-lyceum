@@ -3,7 +3,7 @@ import "./PostDetailsPage.css";
 import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Heading, Text, Container, Flex, Button, ButtonGroup, Input, Textarea } from '@chakra-ui/react'
+import { Heading, Box, Text, Container, Flex, Button, ButtonGroup, Input, Textarea } from '@chakra-ui/react'
 
 const PostDetailsPage = () => {
 
@@ -44,6 +44,7 @@ const PostDetailsPage = () => {
   
 
   return (
+    <Box className='style-container'>
     <Flex className='the-content' direction={'column'} minH={'100vh'}>
     <Container my="30px" p="10px">
 
@@ -80,6 +81,7 @@ const PostDetailsPage = () => {
     
       </Container>
       </Flex>
+      </Box>
   );
 };
 

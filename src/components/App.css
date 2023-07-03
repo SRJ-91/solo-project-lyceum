@@ -103,6 +103,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
+  margin-top: 30px;
   background-color: #efefef;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -122,6 +123,10 @@ form {
 input, select {
   width: 25%;
 }
+
+/* .input-borders {
+  background: rgba(0,0,0,0.8);
+} */
 
 .app-background {
   background-image: url(/./public/images/greek-background.jpeg);
