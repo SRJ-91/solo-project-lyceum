@@ -1,29 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
-const multer = require('multer'); // Import multer
 
 //POST Request to create a new reading group
-router.post('/create', upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'logo', maxCount: 1 }]), async (req, res) => {
-  const { badge_id, region, book_name, team_name, cohort, start_date, end_date, details } = req.body;
-  const coverPath = req.files['cover'][0].path;
-  const logoPath = req.files['logo'][0].path;
-
-  const query = `
-    INSERT INTO groups (badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-    RETURNING *`;
-  const values = [badge_id, region, book_name, team_name, coverPath, logoPath, cohort, start_date, end_date, details];
-
-  try {
-    const result = await pool.query(query, values);
-    res.status(201).send(result.rows[0]);
-  } catch (error) {
-    console.error('Error creating a group:', error);
-    res.sendStatus(500);
-  }
+router.post('/create', (req, res) => {
+  const { badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details } = req.body;
+  const query = `INSERT INTO groups (badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details)
+                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                   RETURNING *`;
+  const values = [badge_id, region, book_name, team_name, cover, logo, cohort, start_date, end_date, details];
+  console.log('sending', req.body);
+  pool.query(query, values)
+    .then((result) => {
+      res.status(201).send(result.rows[0]);
+      // console.log('result is', result);
+    })
+    .catch((error) => {
+      console.error('Error creating a group:', error);
+      res.sendStatus(500);
+    });
 });
-
 
 //GET Request to Map ACTIVE or FALSE groups to your launch and page
 router.get('/active', (req, res) => {

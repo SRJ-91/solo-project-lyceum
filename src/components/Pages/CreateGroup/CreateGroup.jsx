@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import "./CreateGroup.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -14,9 +13,9 @@ const CreateGroup = () => {
 
   // States for every input on form, naming is consistent with SQL database
   const [book_name, setBook_Name] = useState('');
-  // const [cover, setCover] = useState('');
+  const [cover, setCover] = useState('');
   const [team_name, setTeam_Name] = useState('');
-  // const [logo, setLogo] = useState('');
+  const [logo, setLogo] = useState('');
   const [start_date, setStart_Date] = useState('');
   const [end_date, setEnd_Date] = useState('');
   const [cohort, setCohort] = useState('');
@@ -24,9 +23,6 @@ const CreateGroup = () => {
   const [details, setDetails] = useState('');
 
   const [selectedBadgeId, setSelectedBadgeId] = useState('');
-  const [coverFile, setCoverFile] = useState(null);
-  const [logoFile, setLogoFile] = useState(null);
-
 
   useEffect(() => {
     // Fetch badge data
@@ -36,22 +32,15 @@ const CreateGroup = () => {
   const badges = useSelector(store => store.badges);
 
 
-  const handleCoverUpload = (event) => {
-    const file = event.target.files[0];
-    setCoverFile(file);
-  };
-
-  const handleLogoUpload = (event) => {
-    const file = event.target.files[0];
-    setLogoFile(file);
-  };
-
-  const handleGroupLaunch = () => {
+  function handleGroupLaunch() {
+    event.preventDefault();
     // Create a new group object with the input values
     const newGroup = {
-      badge_id: selectedBadgeId,
+      badge_id: selectedBadgeId, // Include the selected badge ID
       book_name,
+      cover,
       team_name,
+      logo,
       start_date,
       end_date,
       cohort,
@@ -62,13 +51,14 @@ const CreateGroup = () => {
     // Dispatch the CREATE_GROUP action with the new group object
     dispatch({ type: 'CREATE_GROUP', payload: newGroup });
 
-    // Log the group information
     console.log('The group sent was', newGroup);
 
     // Navigate to the "/launch" screen
     history.push('/launch');
-  };
+  }
 
+
+  // onSubmit={handleGroupLaunch}>
 
   return (
     <Box className='create-page'>
@@ -104,11 +94,13 @@ const CreateGroup = () => {
 
         <label htmlFor="cover">Cover:</label>
         <Input
-          type="file"
+          type="text"
           id="cover"
-          accept=".jpg, .jpeg, .png, .gif"
           marginBottom={'10px'}
-          onChange={handleCoverUpload}
+          placeholder='IMG URL'
+          _placeholder={{ opacity: 1, color: 'black' }}
+          value={cover}
+          onChange={(e) => setCover(e.target.value)}
           isRequired={true}
         />
 
@@ -123,11 +115,13 @@ const CreateGroup = () => {
 
         <label htmlFor="logo">Logo:</label>
         <Input
-          type="file"
+          type="text"
           id="logo"
-          accept=".jpg, .jpeg, .png, .gif"
           marginBottom={'10px'}
-          onChange={handleLogoUpload}
+          placeholder='IMG URL'
+          _placeholder={{ opacity: 1, color: 'black' }}
+          value={logo}
+          onChange={(e) => setLogo(e.target.value)}
         />
 
         <label htmlFor="start_date">Start Date:</label>
