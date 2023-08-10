@@ -104,13 +104,11 @@ const CreateGroup = () => {
 
         <label htmlFor="cover">Cover:</label>
         <Input
-          type="text"
+          type="file"
           id="cover"
+          accept=".jpg, .jpeg, .png, .gif"
           marginBottom={'10px'}
-          placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'black' }}
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
+          onChange={handleCoverUpload}
           isRequired={true}
         />
 
@@ -125,13 +123,11 @@ const CreateGroup = () => {
 
         <label htmlFor="logo">Logo:</label>
         <Input
-          type="text"
+          type="file"
           id="logo"
+          accept=".jpg, .jpeg, .png, .gif"
           marginBottom={'10px'}
-          placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'black' }}
-          value={logo}
-          onChange={(e) => setLogo(e.target.value)}
+          onChange={handleLogoUpload}
         />
 
         <label htmlFor="start_date">Start Date:</label>
