@@ -88,7 +88,6 @@ const CreateGroup = () => {
           id="cover"
           marginBottom={'10px'}
           onChange={(e) => setCover(e.target.files[0])}
-          isRequired={true}
         />
 
         <label htmlFor="logo">Logo:</label>

@@ -16,8 +16,8 @@ function* createGroupSaga(action) {
       details,
     } = action.payload;
 
-    let coverUrl = 'public/images/stock-photo-old-books-on-wooden-table.jpg';
-    let logoUrl = 'public/images/stock-photo-old-books-on-wooden-table.jpg';
+    let coverUrl = 'https://res.cloudinary.com/lyceum/image/upload/v1692032584/stock-photo-old-books-on-wooden-table_wurexp.jpg';
+    let logoUrl = 'https://res.cloudinary.com/lyceum/image/upload/v1692032762/hellenic_flagbearer_phdaaq.jpg';
 
     // Upload cover image to Cloudinary
     if (cover !== '') {
