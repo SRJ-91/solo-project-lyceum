@@ -82,6 +82,29 @@ const CreateGroup = () => {
           ))}
         </Select>
 
+        <label htmlFor="cover">Cover:</label>
+        <Input
+          type="file"
+          id="cover"
+          marginBottom={'10px'}
+          // placeholder='IMG URL'
+          // _placeholder={{ opacity: 1, color: 'black' }}
+          value={cover}
+          onChange={(e) => setCover(e.target.value)}
+          isRequired={true}
+        />
+
+        <label htmlFor="logo">Logo:</label>
+        <Input
+          type="file"
+          id="logo"
+          marginBottom={'10px'}
+          // placeholder='IMG URL'
+          // _placeholder={{ opacity: 1, color: 'black' }}
+          value={logo}
+          onChange={(e) => setLogo(e.target.value)}
+        />
+
         <label htmlFor="book_name">Book Name:</label>
         <Input
           type="text"
@@ -92,18 +115,6 @@ const CreateGroup = () => {
           isRequired={true}
         />
 
-        <label htmlFor="cover">Cover:</label>
-        <Input
-          type="text"
-          id="cover"
-          marginBottom={'10px'}
-          placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'black' }}
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
-          isRequired={true}
-        />
-
         <label htmlFor="team_name">Team Name:</label>
         <Input
           type="text"
@@ -111,17 +122,6 @@ const CreateGroup = () => {
           marginBottom={'10px'}
           value={team_name}
           onChange={(e) => setTeam_Name(e.target.value)}
-        />
-
-        <label htmlFor="logo">Logo:</label>
-        <Input
-          type="text"
-          id="logo"
-          marginBottom={'10px'}
-          placeholder='IMG URL'
-          _placeholder={{ opacity: 1, color: 'black' }}
-          value={logo}
-          onChange={(e) => setLogo(e.target.value)}
         />
 
         <label htmlFor="start_date">Start Date:</label>

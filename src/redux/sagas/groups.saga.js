@@ -1,6 +1,73 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import axios from 'axios';
 
+function* createGroupSaga(action) {
+  try {
+    const {
+      badge_id,
+      region,
+      book_name,
+      team_name,
+      cover, //Add cover to deconstructed properties
+      logo, // Add logo to deconstructed properties
+      start_date,
+      end_date,
+      cohort,
+      details,
+    } = action.payload;
+
+    let coverUrl = '';
+    let logoUrl = '';
+
+    // Upload cover image to Cloudinary
+    if (cover !== '') {
+      const coverFormData = new FormData();
+      coverFormData.append('file', cover);
+      coverFormData.append('upload_preset', 'gqurs5dc');
+
+      const coverResponse = yield axios.post(
+        'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+        coverFormData
+      );
+      coverUrl = coverResponse.data.secure_url;
+    }
+
+    // Upload logo image to Cloudinary
+    if (logo !== '') {
+      const logoFormData = new FormData();
+      logoFormData.append('file', logo);
+      logoFormData.append('upload_preset', 'gqurs5dc');
+
+      const logoResponse = yield axios.post(
+        'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+        logoFormData
+      );
+      logoUrl = logoResponse.data.secure_url;
+    }
+
+    // Construct the new group object with Cloudinary URLs
+    const newGroup = {
+      badge_id,
+      region,
+      book_name,
+      team_name,
+      cover: coverUrl, // Use Cloudinary URLs here
+      logo: logoUrl,  //Use Cloudinary URLS here
+      start_date,
+      end_date,
+      cohort,
+      details,
+    };
+
+    // Send the new group object to your API route
+    yield call(axios.post, '/api/groups/create', newGroup);
+    console.log('Successfully created group', newGroup);
+    yield put({ type: 'FETCH_ACTIVE' });
+  } catch (error) {
+    console.log('Error in creating a group', error);
+  }
+}
+
 function* fetchActiveGroupsSaga() {
   try {
     const groups = yield call(axios.get, '/api/groups/active');
@@ -28,17 +95,6 @@ function* fetchGroupDetails(action) {
     yield put({ type: 'SET_SELECTED_GROUP', payload: response.data });
   } catch (error) {
     console.log('Error fetching group details:', error);
-  }
-}
-
-
-function* createGroupSaga(action) {
-  try {
-    yield call(axios.post, '/api/groups/create', action.payload);
-    console.log('Successfully created group', action.payload);
-    yield put({ type: 'FETCH_ACTIVE' });
-  } catch (error) {
-    console.log('Error in creating a group', error);
   }
 }
 
