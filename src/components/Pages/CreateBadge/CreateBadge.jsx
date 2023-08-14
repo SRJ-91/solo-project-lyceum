@@ -30,13 +30,13 @@ const CreateBadge = () => {
         value={newBadge.name}
         fontWeight={'extrabold'}
         onChange={(event) => setBadge({...newBadge, name: event.target.value})}
+        isRequired={true}
         />
          <Input 
-        type="text" 
-        placeholder='Badge Url'
-        value={newBadge.img}
+        type="file" 
         fontWeight={'extrabold'}
-        onChange={(event) => setBadge({...newBadge, img: event.target.value})}
+        onChange={(event) => setBadge({...newBadge, img: event.target.files[0]})}
+        isRequired={true}
         />
         <Input 
         type="text" 
@@ -44,6 +44,7 @@ const CreateBadge = () => {
         value={newBadge.description}
         fontWeight={'extrabold'}
         onChange={(event) => setBadge({...newBadge, description: event.target.value})}
+        isRequired={true}
         />
         <Input 
         type='submit' 

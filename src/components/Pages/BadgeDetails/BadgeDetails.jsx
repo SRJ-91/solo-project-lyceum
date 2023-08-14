@@ -63,8 +63,8 @@ const BadgeDetailsPage = () => {
     )}
     {editing && (
       <Input
-        value={editedImg}
-        onChange={(e) => setEditedImg(e.target.value)}
+        type="file"
+        onChange={(e) => setEditedImg({...editedImg, img: e.target.files[0]})}
       />
     )}
 
