@@ -7,11 +7,30 @@ function* registerUser(action) {
     // clear any existing error on the registration page
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
 
-    // passes the username and password from the payload to the server
-    yield axios.post('/api/user/register', action.payload);
+    // Upload avatar to Cloudinary
+    let avatarUrl = null;
+    if (action.payload.avatar) {
+      const avatarFormData = new FormData();
+      avatarFormData.append('file', action.payload.avatar);
+      avatarFormData.append('upload_preset', 'ifdf0uhs'); // Replace with your upload preset
+      
+      const avatarResponse = yield axios.post(
+        'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+        avatarFormData
+      );
+      avatarUrl = avatarResponse.data.secure_url;
+    }
+
+    // Modify the payload to include the avatar URL if available
+    const updatedPayload = avatarUrl
+      ? { ...action.payload, avatar: avatarUrl }
+      : action.payload;
+
+    // passes the modified payload to the server
+    yield axios.post('/api/user/register', updatedPayload);
 
     // automatically log a user in after registration
-    yield put({ type: 'LOGIN', payload: action.payload });
+    yield put({ type: 'LOGIN', payload: updatedPayload });
 
     // set to 'login' mode so they see the login screen
     // after registration or after they log out
