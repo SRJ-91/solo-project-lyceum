@@ -70,6 +70,77 @@ function* createGroupSaga(action) {
   }
 }
 
+function* updateGroupSaga(action) {
+  try {
+    const {
+      id, // group id
+      cover, // edited cover image
+      logo, // edited logo image
+      region,
+      book_name,
+      team_name,
+      cohort,
+      start_date,
+      end_date,
+      details,
+      // add other fields as needed
+    } = action.payload;
+
+    let coverUrl = '';
+    let logoUrl = '';
+
+    // Upload cover image to Cloudinary if it's provided
+    if (cover instanceof File) {
+      const coverFormData = new FormData();
+      coverFormData.append('file', cover);
+      coverFormData.append('upload_preset', 'ifdf0uhs');
+
+      const coverResponse = yield axios.post(
+        'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+        coverFormData
+      );
+      coverUrl = coverResponse.data.secure_url;
+    }
+
+    // Upload logo image to Cloudinary if it's provided
+    if (logo instanceof File) {
+      const logoFormData = new FormData();
+      logoFormData.append('file', logo);
+      logoFormData.append('upload_preset', 'ifdf0uhs');
+
+      const logoResponse = yield axios.post(
+        'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+        logoFormData
+      );
+      logoUrl = logoResponse.data.secure_url;
+    }
+
+    // Construct the updated group object with Cloudinary URLs
+    const updatedGroup = {
+      id,
+      cover: coverUrl || action.payload.cover,
+      logo: logoUrl || action.payload.logo,
+      region,
+      book_name,
+      team_name,
+      cohort,
+      start_date,
+      end_date,
+      details,
+      // add other fields as needed
+    };
+
+    // Send the updated group object to your API route
+    yield call(axios.put, `/api/groups/update/${id}`, updatedGroup);
+    console.log('Successfully updated group', updatedGroup);
+    
+    // Dispatch action to fetch the updated group data
+    yield put({ type: 'FETCH_SELECTED_GROUP', payload: id });
+  } catch (error) {
+    console.log('Error updating group', error);
+  }
+}
+
 function* fetchActiveGroupsSaga() {
   try {
     const groups = yield call(axios.get, '/api/groups/active');
@@ -97,17 +168,6 @@ function* fetchGroupDetails(action) {
     yield put({ type: 'SET_SELECTED_GROUP', payload: response.data });
   } catch (error) {
     console.log('Error fetching group details:', error);
-  }
-}
-
-function* updateGroupSaga(action) { //expects a user id plus the groups table keys
-  try {
-    yield call(axios.put, `/api/groups/update/${action.payload.id}`, action.payload);
-    console.log('Successfully updated group', action.payload);
-    // yield put({ type: 'FETCH_ACTIVE' });
-    yield put ({ type: 'FETCH_SELECTED_GROUP', payload: action.payload.id })
-  } catch (error) {
-    console.log('Error updating group', error);
   }
 }
 
