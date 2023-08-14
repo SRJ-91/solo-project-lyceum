@@ -16,14 +16,15 @@ function* createGroupSaga(action) {
       details,
     } = action.payload;
 
-    let coverUrl = '';
-    let logoUrl = '';
+    let coverUrl = 'public/images/stock-photo-old-books-on-wooden-table.jpg';
+    let logoUrl = 'public/images/stock-photo-old-books-on-wooden-table.jpg';
 
     // Upload cover image to Cloudinary
     if (cover !== '') {
+      console.log('the cover is', cover);
       const coverFormData = new FormData();
       coverFormData.append('file', cover);
-      coverFormData.append('upload_preset', 'gqurs5dc');
+      coverFormData.append('upload_preset', 'ifdf0uhs');
 
       const coverResponse = yield axios.post(
         'https://api.cloudinary.com/v1_1/lyceum/image/upload',
@@ -34,9 +35,10 @@ function* createGroupSaga(action) {
 
     // Upload logo image to Cloudinary
     if (logo !== '') {
+      console.log('the logo is', logo);
       const logoFormData = new FormData();
       logoFormData.append('file', logo);
-      logoFormData.append('upload_preset', 'gqurs5dc');
+      logoFormData.append('upload_preset', 'ifdf0uhs');
 
       const logoResponse = yield axios.post(
         'https://api.cloudinary.com/v1_1/lyceum/image/upload',

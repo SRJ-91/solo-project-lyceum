@@ -87,10 +87,7 @@ const CreateGroup = () => {
           type="file"
           id="cover"
           marginBottom={'10px'}
-          // placeholder='IMG URL'
-          // _placeholder={{ opacity: 1, color: 'black' }}
-          value={cover}
-          onChange={(e) => setCover(e.target.value)}
+          onChange={(e) => setCover(e.target.files[0])}
           isRequired={true}
         />
 
@@ -99,10 +96,7 @@ const CreateGroup = () => {
           type="file"
           id="logo"
           marginBottom={'10px'}
-          // placeholder='IMG URL'
-          // _placeholder={{ opacity: 1, color: 'black' }}
-          value={logo}
-          onChange={(e) => setLogo(e.target.value)}
+          onChange={(e) => setLogo(e.target.files[0])}
         />
 
         <label htmlFor="book_name">Book Name:</label>
