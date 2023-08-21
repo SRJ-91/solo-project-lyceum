@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import "./BadgeDetails.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, ButtonGroup, Container, Heading, Input, Text, Box, VStack } from '@chakra-ui/react';
+import { Button, ButtonGroup, Image, Heading, Input, Text, Box, VStack } from '@chakra-ui/react';
 
 const BadgeDetailsPage = () => {
   const { badgeId } = useParams();
@@ -12,7 +13,9 @@ const BadgeDetailsPage = () => {
   const history = useHistory();
 
   const [editing, setEditing] = useState(false);
+  const [isNewImageSelected, setIsNewImageSelected] = useState(false);
   const [editedBadge, setEditedBadge] = useState({
+    id: selectedBadge.id,
     img: selectedBadge.img || '',
     name: selectedBadge.name,
     description: selectedBadge.description,
@@ -22,10 +25,39 @@ const BadgeDetailsPage = () => {
     setEditing(true);
   };
 
-  const handleSaveClick = () => {
-    dispatch({ type: 'UPDATE_BADGE', payload: editedBadge });
-    setEditing(false);
+  const handleSaveClick = async () => {
+    if (isNewImageSelected) {
+      // Upload the edited image to Cloudinary
+      try {
+        const formData = new FormData();
+        formData.append('file', editedBadge.img);
+        formData.append('upload_preset', 'ifdf0uhs');
+        
+        const response = await axios.post(
+          'https://api.cloudinary.com/v1_1/lyceum/image/upload',
+          formData
+        );
+  
+        const imgUrl = response.data.secure_url;
+        const updatedBadge = {
+          ...editedBadge,
+          img: imgUrl,
+        };
+  
+        dispatch({ type: 'UPDATE_BADGE', payload: updatedBadge });
+        setEditing(false);
+        history.push('/all-badges');
+      } catch (error) {
+        console.log('Error uploading image to Cloudinary:', error);
+      }
+    } else {
+      // No need to upload image, directly update the badge data
+      dispatch({ type: 'UPDATE_BADGE', payload: editedBadge });
+      setEditing(false);
+      history.push('/all-badges');
+    }
   };
+  
 
   const handleDeleteClick = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this badge?');
@@ -53,7 +85,6 @@ const BadgeDetailsPage = () => {
     </>
   )}
 </ButtonGroup>
-
       <Box className='badge-display'>
       <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>{editing ? (
         <Input
@@ -67,7 +98,7 @@ const BadgeDetailsPage = () => {
 
       
       {!editing && (
-        <img
+        <Image
         className='badge-picture'
           src={selectedBadge.img}
           alt={selectedBadge.name}
@@ -75,14 +106,18 @@ const BadgeDetailsPage = () => {
         />
       )}
       {editing && (
-        <Input
-          type="file"
-          htmlSize={4} 
-          width='auto'
-          textColor={'white'}
-          onChange={(e) => setEditedBadge({ ...editedBadge, img: e.target.files[0] })}
-        />
-      )}
+  <Input
+    type="file"
+    htmlSize={4} 
+    width='auto'
+    textColor={'white'}
+    onChange={(e) => {
+      setEditedBadge({ ...editedBadge, img: e.target.files[0] });
+      setIsNewImageSelected(true); // Flag new image selection
+    }}
+  />
+)}
+
       </Box>
 
       <div className='badge-details'>

@@ -71,6 +71,7 @@ function* updateBadgeSaga(action) {
 }
 
 
+
 // Fetch badges saga
 function* fetchBadgesSaga() {
   try {

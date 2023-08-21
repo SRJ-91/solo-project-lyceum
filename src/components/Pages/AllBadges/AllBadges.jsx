@@ -23,7 +23,7 @@ const AllBadges = () => {
 
   return (
     <Box className='badge-page'>
-    <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>Lyceum Badges</Heading>
+    <Heading color={'white'} textAlign={'center'} marginTop={'10px'} marginBottom={'20px'}>Lyceum Badges</Heading>
     <ButtonGroup spacing={'15px'} className='the-buttons'>
     <Button onClick={() => history.push('/create-badge')}>Create a Badge</Button>
     <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>Go to Lyceum</Button>
@@ -39,6 +39,7 @@ const AllBadges = () => {
         className='badge-picture'
         src={badge.img} 
         alt="Badge"
+        height={'200px'}
         width={'200px'}
         onClick={() => handleBadgeClick(badge.id)}
         />
