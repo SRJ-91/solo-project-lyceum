@@ -1,40 +1,29 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import "./BadgeDetails.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import {Button, Heading, Input, Text} from '@chakra-ui/react'
+import { Button, ButtonGroup, Container, Heading, Input, Text, Box, Center } from '@chakra-ui/react';
 
 const BadgeDetailsPage = () => {
-    //Hooks
   const { badgeId } = useParams();
   const badges = useSelector((store) => store.badges);
   const selectedBadge = badges.find((badge) => badge.id === Number(badgeId));
   const dispatch = useDispatch();
   const history = useHistory();
-    //If nothing found
-  if (!selectedBadge) {
-    return <div>Badge not found! Do not refresh the page here!</div>;
-  }
 
-   // State for editing badge details
-   const [editing, setEditing] = useState(false);
-   const [editedImg, setEditedImg] = useState(selectedBadge?.img || '');
-   const [editedName, setEditedName] = useState(selectedBadge.name);
-   const [editedDescription, setEditedDescription] = useState(selectedBadge.description);
- 
-   const handleEditClick = () => {
+  const [editing, setEditing] = useState(false);
+  const [editedBadge, setEditedBadge] = useState({
+    img: selectedBadge.img || '',
+    name: selectedBadge.name,
+    description: selectedBadge.description,
+  });
+
+  const handleEditClick = () => {
     setEditing(true);
   };
 
   const handleSaveClick = () => {
-    const updatedBadge = {
-      id: selectedBadge.id,
-      img: editedImg,
-      name: editedName,
-      description: editedDescription,
-    };
-
-    dispatch({ type: 'UPDATE_BADGE', payload: updatedBadge });
+    dispatch({ type: 'UPDATE_BADGE', payload: editedBadge });
     setEditing(false);
   };
 
@@ -42,53 +31,69 @@ const BadgeDetailsPage = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this badge?');
     if (confirmDelete) {
       dispatch({ type: 'DELETE_BADGE', payload: selectedBadge.id });
-      console.log(selectedBadge.id);
       history.push('/all-badges');
     }
   };
 
-  const { name, img, description } = selectedBadge;
-
   return (
-    <div>
+    <Box className='badge-page'>
+      <ButtonGroup>
         <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
-      {/* Render badge details */}
-    <Heading>{selectedBadge.name}</Heading>
-    {!editing && (
-      <img
-        src={selectedBadge.img}
-        alt={selectedBadge.name}
-        width="500px"
-      />
-    )}
-    {editing && (
-      <Input
-        type="file"
-        onChange={(e) => setEditedImg({...editedImg, img: e.target.files[0]})}
-      />
-    )}
-
-    <div className='badge-details'>
-    <Text>{selectedBadge.description}</Text>
-    </div> 
-
-      {/* Render edit and delete Buttons */}
-      {!editing && (
-        <div>
-          <Button onClick={handleEditClick}>Edit</Button>
-          <Button onClick={handleDeleteClick}>Delete</Button>
-        </div>
-      )}
-
-      {/* Render input fields for editing */}
-      {editing && (
-        <div>
-          <Input value={editedName} onChange={(e) => setEditedName(e.target.value)} />
-          <Text value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)}></Text>
+        {!editing && (
+          <>
+            <Button onClick={handleEditClick}>Edit</Button>
+            <Button onClick={handleDeleteClick}>Delete</Button>
+          </>
+        )}
+        {editing && (
           <Button onClick={handleSaveClick}>Save</Button>
-        </div>
+        )}
+      </ButtonGroup>
+
+      <Box className='badge-display'>
+      <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>{editing ? (
+        <Input
+          type="text"
+          value={editedBadge.name}
+          onChange={(e) => setEditedBadge({ ...editedBadge, name: e.target.value })}
+        />
+      ) : (
+        selectedBadge.name
+      )}</Heading>
+
+      
+      {!editing && (
+        <img
+        className='badge-picture'
+          src={selectedBadge.img}
+          alt={selectedBadge.name}
+          width="500px"
+        />
       )}
-    </div>
+      {editing && (
+        <Input
+          type="file"
+          htmlSize={4} 
+          width='auto'
+          textColor={'white'}
+          onChange={(e) => setEditedBadge({ ...editedBadge, img: e.target.files[0] })}
+        />
+      )}
+      </Box>
+
+      <div className='badge-details'>
+        <Text>{editing ? (
+          <Input
+            type="text"
+            value={editedBadge.description}
+            onChange={(e) => setEditedBadge({ ...editedBadge, description: e.target.value })}
+          />
+        ) : (
+          selectedBadge.description
+        )}</Text>
+      </div>
+
+    </Box>
   );
 };
 
