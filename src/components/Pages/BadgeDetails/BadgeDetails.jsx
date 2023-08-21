@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./BadgeDetails.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, ButtonGroup, Container, Heading, Input, Text, Box, Center } from '@chakra-ui/react';
+import { Button, ButtonGroup, Container, Heading, Input, Text, Box, VStack } from '@chakra-ui/react';
 
 const BadgeDetailsPage = () => {
   const { badgeId } = useParams();
@@ -37,18 +37,22 @@ const BadgeDetailsPage = () => {
 
   return (
     <Box className='badge-page'>
-      <ButtonGroup>
-        <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
-        {!editing && (
-          <>
-            <Button onClick={handleEditClick}>Edit</Button>
-            <Button onClick={handleDeleteClick}>Delete</Button>
-          </>
-        )}
-        {editing && (
-          <Button onClick={handleSaveClick}>Save</Button>
-        )}
-      </ButtonGroup>
+
+<ButtonGroup>
+  {!editing && (
+    <>
+      <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
+      <Button variant={'outline'} color={'white'} onClick={handleEditClick}>Edit</Button>
+      <Button variant={'outline'} color={'white'} onClick={handleDeleteClick}>Delete</Button>
+    </>
+  )}
+  {editing && (
+    <>
+      <Button variant={'outline'} color={'white'} onClick={handleSaveClick}>Save</Button>
+      <Button variant={'outline'} color={'white'} onClick={() => setEditing(false)}>Back</Button>
+    </>
+  )}
+</ButtonGroup>
 
       <Box className='badge-display'>
       <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>{editing ? (

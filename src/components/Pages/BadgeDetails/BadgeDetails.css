@@ -13,5 +13,6 @@
 }
 
 .badge-buttons {
-    align-content: center;
+    position: flex;
+    flex-direction: column;
 }
