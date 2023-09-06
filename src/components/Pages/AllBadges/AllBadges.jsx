@@ -30,7 +30,8 @@ const AllBadges = () => {
     <Button variant={'outline'} color ={'white'} _hover={blur} onClick={() => history.push('/archive')}>Go to Archive</Button>
     </ButtonGroup>
     {/* Badges mapping */}
-    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+    <Box className='grid-container'>
+    <SimpleGrid minChildWidth='120px' spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
     {badges.map((badge) => (
       
       <Card variant={'elevated'} maxW={'md'} align={'center'} className='badge-card' key={badge.id} >
@@ -53,6 +54,7 @@ const AllBadges = () => {
       </Card>
     ))}
     </SimpleGrid>
+    </Box>
   </Box>
 );
 };
