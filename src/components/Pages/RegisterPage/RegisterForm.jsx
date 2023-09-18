@@ -9,7 +9,6 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [region, setRegion] = useState('');
   const [avatar, setAvatar] = useState('');
-  const [role, setRole] = useState('');
 
   //hooks
   const errors = useSelector((store) => store.errors);
@@ -25,19 +24,9 @@ function RegisterForm() {
         password: password,
         region: region,
         avatar: avatar,
-        role: role,
       }
     });
   }; // end registerUser
-
-  // Clear the form inputs after submission
-  // setUser({
-  //   username: '',
-  //   password: '',
-  //   region: '',
-  //   avatar: '',
-  //   role: '',
-  // });
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -59,7 +48,7 @@ function RegisterForm() {
           />
         </label>
       </div>
-      <div className='input-borders'> 
+      <div className='input-borders'>
         <label htmlFor="password">
           Password:
           <Input
@@ -71,31 +60,21 @@ function RegisterForm() {
           />
         </label>
         <label htmlFor="region">Region:</label>
-<Input
-  type="text"
-  id="region"
-  placeholder="Continent-Timezone"
-  value={region}
-  onChange={(event) => setRegion(event.target.value)}
-/>
+        <Input
+          type="text"
+          id="region"
+          placeholder="Continent-Timezone"
+          value={region}
+          onChange={(event) => setRegion(event.target.value)}
+        />
 
-<label htmlFor="avatar">Avatar:</label>
-<Input
-  type="text"
-  id="avatar"
-  placeholder="Enter avatar URL"
-  value={avatar}
-  onChange={(event) => setAvatar(event.target.value)}
-/>
+        <label htmlFor="avatar">Avatar:</label>
+        <Input
+          type="file"
+          id="avatar"
+          onChange={(event) => setAvatar(event.target.files[0])}
+        />
 
-{/* <label htmlFor="role">Role:</label>
-<Input
-  type="text"
-  id="role"
-  placeholder="Enter role"
-  value={role}
-  onChange={(event) => setRole(event.target.value)}
-/> */}
       </div>
       <div>
         <Input className="btn" type="submit" name="submit" value="Register" />

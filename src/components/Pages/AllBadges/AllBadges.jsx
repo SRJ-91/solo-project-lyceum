@@ -23,14 +23,15 @@ const AllBadges = () => {
 
   return (
     <Box className='badge-page'>
-    <Heading color={'white'} textAlign={'center'} marginTop={'20px'} marginBottom={'20px'}>Lyceum Badges</Heading>
+    <Heading color={'white'} textAlign={'center'} marginTop={'10px'} marginBottom={'20px'}>Lyceum Badges</Heading>
     <ButtonGroup spacing={'15px'} className='the-buttons'>
     <Button onClick={() => history.push('/create-badge')}>Create a Badge</Button>
     <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>Go to Lyceum</Button>
     <Button variant={'outline'} color ={'white'} _hover={blur} onClick={() => history.push('/archive')}>Go to Archive</Button>
     </ButtonGroup>
     {/* Badges mapping */}
-    <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+    <Box className='grid-container'>
+    <SimpleGrid minChildWidth='120px' spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
     {badges.map((badge) => (
       
       <Card variant={'elevated'} maxW={'md'} align={'center'} className='badge-card' key={badge.id} >
@@ -39,6 +40,7 @@ const AllBadges = () => {
         className='badge-picture'
         src={badge.img} 
         alt="Badge"
+        height={'200px'}
         width={'200px'}
         onClick={() => handleBadgeClick(badge.id)}
         />
@@ -52,6 +54,7 @@ const AllBadges = () => {
       </Card>
     ))}
     </SimpleGrid>
+    </Box>
   </Box>
 );
 };

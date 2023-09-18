@@ -40,7 +40,7 @@ const RosterControlsAndEssays = ({groupId}) => {
       <TableContainer>
       <Table>
         <Thead>
-          <Tr>
+          <Tr className='table-heading'>
             <Th>Avatar</Th>
             <Th>Region</Th>
             <Th>Username</Th>

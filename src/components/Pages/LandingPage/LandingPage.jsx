@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
+import {Button, Box, FormControl, FormLabel} from "@chakra-ui/react"
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterPage/RegisterForm';
@@ -14,6 +15,7 @@ function LandingPage() {
   };
 
   return (
+    <Box className='login-screen'>
     <div className="container">
       <h2>{heading}</h2>
 
@@ -63,6 +65,7 @@ function LandingPage() {
         </div>
       </div>
     </div>
+    </Box>
   );
 }
 

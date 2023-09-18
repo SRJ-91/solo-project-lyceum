@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 //GET Request to map all badges out in the badge view screen
 router.get('/fetch', (req, res) => {
-    const query = `SELECT * FROM badges ORDER BY "name" DESC`;
+    const query = `SELECT * FROM badges ORDER BY "id" ASC`;
     console.log(req.body);
     pool.query(query)
     .then((result) => {

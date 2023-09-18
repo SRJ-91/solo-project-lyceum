@@ -1,12 +1,14 @@
 import React from 'react';
+import "./LoginPage.css";
 import LoginForm from './LoginForm';
 import { useHistory } from 'react-router-dom';
-import {Button, FormControl, FormLabel} from "@chakra-ui/react"
+import {Button, Box, FormControl, FormLabel} from "@chakra-ui/react"
 
 function LoginPage() {
   const history = useHistory();
 
   return (
+    <Box className='login-screen'>
     <div>
       <LoginForm />
 
@@ -22,6 +24,7 @@ function LoginPage() {
         </Button>
       </center>
     </div>
+    </Box>
   );
 }
 

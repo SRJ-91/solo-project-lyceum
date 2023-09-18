@@ -21,7 +21,7 @@ router.post('/create', (req, res) => {
     });
 });
 
-//GET Request to Map ACTIVE or FALSE groups to your launch and page
+//GET Request to Map ACTIVE or FALSE groups to your launch page
 router.get('/active', (req, res) => {
   const query = `
     SELECT * FROM groups
@@ -38,7 +38,7 @@ router.get('/active', (req, res) => {
     });
 });
 
-//Get groups that are marked DONE or TRUE
+//GET Request to Map DONE or TRUE groups to your archive page
 router.get('/done', (req, res) => {
   const query = `
     SELECT * FROM "groups"

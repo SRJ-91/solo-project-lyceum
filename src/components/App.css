@@ -26,15 +26,28 @@ Container
 Button
 -------------------------------------------------------------------------------- */
 
+/* Apply hover effect to table rows except those with the class 'table-heading' */
+tr:not(.table-heading):hover {
+  background-color: teal; /* Change the background color on hover */
+  color: white; /* Change the text color on hover */
+}
+
+
+/* Apply hover effect to buttons except those with the class "no-hover-effect" */
+button:not(.no-hover-effect):hover {
+border: 2px solid teal; /* Change the border color and width on hover */
+transform: scale(1.2); /* Increase the button size by 20% on hover */
+transition: border-color 0.3s ease, transform 0.3s ease; /* Add smooth transition */
+}
+
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  /* border-color: #014041; */
   border-color: black;
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #00acb0;
-  /* color: #f8f8f8; */
   color: darkblue;
   font-size: 1.1rem;
   outline: 0;
@@ -123,10 +136,6 @@ form {
 input, select {
   width: 25%;
 }
-
-/* .input-borders {
-  background: rgba(0,0,0,0.8);
-} */
 
 .app-background {
   background-image: url(/./public/images/greek-background.jpeg);

@@ -26,8 +26,8 @@ const LaunchPage = () => {
           <Flex direction={'column'}>
             
             <Heading textAlign={'center'} color={'white'} marginBottom={'15px'}>Welcome to the Lyceum</Heading>
-
-            <VStack className='button-container'>
+           
+            <VStack className='button-container'> 
             <ButtonGroup spacing={'15px'}>
             <Button onClick={() => history.push('/create-group')}>Create Group</Button>
             <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-users')}>All Users</Button>
@@ -41,7 +41,7 @@ const LaunchPage = () => {
           <Table variant="simple" colorScheme='whiteAlpha'>
           <TableCaption placement='top'>All Active Reading Groups</TableCaption>
             <Thead>
-              <Tr>
+              <Tr className='table-heading'>
                 {/* <Th>Status</Th> */}
                 <Th>Region</Th>
                 <Th>Book Name</Th>
