@@ -30,9 +30,9 @@ const LaunchPage = () => {
             <VStack className='button-container'> 
             <ButtonGroup spacing={'15px'}>
             <Button onClick={() => history.push('/create-group')}>Create Group</Button>
-            <Button variant={'outline'} color={'white'}  onClick={() => history.push('/all-users')}>All Users</Button>
-            <Button variant={'outline'} color={'white'}  onClick={() => history.push('/all-badges')}>Badges</Button>
-            <Button variant={'outline'} color ={'white'} onClick={() => history.push('/archive')}>Go to Archive</Button>
+            <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-users')}>All Users</Button>
+            <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/all-badges')}>Badges</Button>
+            <Button variant={'outline'} color ={'white'} _hover={blur} onClick={() => history.push('/archive')}>Go to Archive</Button>
             </ButtonGroup>
             </VStack>
            
@@ -41,7 +41,7 @@ const LaunchPage = () => {
           <Table variant="simple" colorScheme='whiteAlpha'>
           <TableCaption placement='top'>All Active Reading Groups</TableCaption>
             <Thead>
-              <Tr>
+              <Tr className='table-heading'>
                 {/* <Th>Status</Th> */}
                 <Th>Region</Th>
                 <Th>Book Name</Th>

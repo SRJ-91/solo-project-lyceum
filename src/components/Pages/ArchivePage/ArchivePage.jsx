@@ -39,7 +39,7 @@ const ArchivePage = () => {
               <Table variant="simple" colorScheme='whiteAlpha'>
                 <TableCaption placement='top'>All Archived Reading Groups</TableCaption>
                 <Thead>
-                  <Tr>
+                  <Tr className='table-heading'>
                     {/* <Th>Status</Th> */}
                     <Th>Region</Th>
                     <Th>Book Name</Th>

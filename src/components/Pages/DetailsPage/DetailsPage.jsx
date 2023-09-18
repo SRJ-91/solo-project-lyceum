@@ -239,7 +239,7 @@ const DetailsPage = () => {
 
                     {/* BUTTONS START HERE */}
 
-                    <ButtonGroup>
+                    <ButtonGroup spacing={'15px'}>
                       <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => history.push('/launch')}>
                         Return to Lyceum
                       </Button>

@@ -44,14 +44,14 @@ const BadgeDetailsPage = () => {
   {!editing && (
     <>
       <Button onClick={() => history.push('/all-badges')}>Return to Badges</Button>
-      <Button variant={'outline'} color={'white'} onClick={handleEditClick}>Edit</Button>
-      <Button variant={'outline'} color={'white'} onClick={handleDeleteClick}>Delete</Button>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={handleEditClick}>Edit</Button>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={handleDeleteClick}>Delete</Button>
     </>
   )}
   {editing && (
     <>
-      <Button variant={'outline'} color={'white'} onClick={handleSaveClick}>Save</Button>
-      <Button variant={'outline'} color={'white'} onClick={() => setEditing(false)}>Back</Button>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={handleSaveClick}>Save</Button>
+      <Button variant={'outline'} color={'white'} _hover={blur} onClick={() => setEditing(false)}>Back</Button>
     </>
   )}
 </ButtonGroup>
